@@ -1,0 +1,21 @@
+body {
+  color: white;
+  background-color: black;
+}
+
+h1 {
+  color: red;
+}
+
+.list-group-item {
+  line-height: 2.5;
+}
+
+/* video loop for the background */
+#bgVideo {
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-width: 100%; 
+  max-width: 100%;
+}
