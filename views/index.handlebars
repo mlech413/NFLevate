@@ -1,15 +1,49 @@
 <video autoplay muted loop id="bgVideo">
   <source src="./img/football-field.mov" type="video/mp4">
 </video>
+
+<div id="header">
+  <a href="/" id="logo">NFLevate</a>
+  <ul id="menu">
+    <li><a href="/"><span>Home</span></a></li>
+    <li><a href="/team"><span>Teams</span></a></li>
+    <li><a href="/player"><span>Players</span></a></li>
+  </ul>
+</div>
+<br><br><br>
+
 <div id="home">
   <div class="container">
     <div class="row">
+      <div class="col-md-4 offset-md-4">
+        <div id="nflTeamDropdown">
+          <!-- empty div for displaying team dropdown-->
+        </div>
+      </div>
+    </div>
+
+    
+    {{!-- <br><br>
+    <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>Home Page</h2>
+        <h3>Team List 1:</h3>
+        <h6>{{teamList.team_name}}</h6>
+
+          <h3>Team List 2:</h3>
+        <ul id="team-list" class="list-group">
+          {{#each teams}}
+          <li team-list="{{this.team_name}}" class="list-group-item1">
+          </li>
+          {{/each}}
+        </ul>
+        <div class="my-list">
+          
+        </div> --}}
+
+
+        {{!-- <h3>Home Page</h3>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <br><br>
             <label for="example-text">Example Text</label>
             <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
           </div>
@@ -17,9 +51,17 @@
             <label for="example-description">Example Description</label>
             <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
           </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
+          <button id="submit" class="btn btn-warning float-right">Submit</button>
         </form>
-        <h3>Examples:</h3>
+        <h3>Teams:</h3>
+        <ul id="team-list" class="list-group">
+          {{#each teams}}
+          <li team-list="{{this.team_name}}" class="list-group-item1">
+          </li>
+          {{/each}}
+        </ul> --}}
+
+        {{!-- <h3>Examples:</h3>
         <ul id="example-list" class="list-group">
           {{#each examples}}
           <li data-id="{{this.id}}" class="list-group-item">
@@ -27,9 +69,10 @@
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
-        </ul>
-      </div>
-    </div>
+        </ul> --}}
+
+      {{!-- </div>
+    </div> --}}
   </div>
 </div>
 
