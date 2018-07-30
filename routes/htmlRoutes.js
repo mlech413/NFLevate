@@ -51,6 +51,11 @@ module.exports = function(app) {
     // res.json(req.params.name);
   });
 
+  app.get("/player/:name?", function(req, res) {
+    return res.render("player", { name: req.params.name });
+
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
