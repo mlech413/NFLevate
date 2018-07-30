@@ -79,6 +79,10 @@ API.getTeams().then(function (res, req) {
   var urlArray = thisURL.split("/");
   var teamIndex = (urlArray.length - 1);
   console.log(urlArray[teamIndex]);
+  var displayTeam = urlArray[teamIndex];
+  displayTeam = displayTeam.replace(/_/g, " ");
+  console.log(displayTeam);
+  $("#teamTitle").append("<h1><center><strong><i><font color='darkblue'><span style='background-color: goldenrod'>&nbsp;" + displayTeam + "&nbsp;</span></font></i></strong></center></h1>");
   var backgroundTeam = urlArray[teamIndex];
   var backgroundURL = nflWallpaper[backgroundTeam];
   console.log(backgroundURL);
