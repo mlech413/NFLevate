@@ -45,6 +45,9 @@ $(document).on("change", ".selectTeam", function(event) {
     // Populate selectedTeamPlus: convert 'State Name' to 'State+Name'
     selectedTeamWithPlus = selectedTeam.split(" ").join("+");
     selectedTeamWithUnderscore = selectedTeam.split(" ").join("_");
+    while (selectedTeamWithUnderscore.charAt(0) === "_") {
+      selectedTeamWithUnderscore = selectedTeamWithUnderscore.substr(1);
+    }
     window.location.href = "/team/" + selectedTeamWithUnderscore;
   }
 });
