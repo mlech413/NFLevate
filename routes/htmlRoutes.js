@@ -44,6 +44,8 @@ module.exports = function(app) {
 
   // Load team page and pass in an team by id
   app.get("/team/:name?", function(req, res) {
+    //console.log(req.params);
+    // res.json(req.params.name);
     return res.render("team", { name: req.params.name });
     // res.render("team");
     // res.json(req.params.name);
