@@ -1,197 +1,383 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">NFLevate</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          Teams
-        </a>
-        <div class="dropdown-menu selectTeam" aria-labelledby="navbarDropdown">
-          {{!--
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a> --}}
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">NFLevate</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Teams
+                </a>
+                <div class="dropdown-menu selectTeam" aria-labelledby="navbarDropdown">
+                    {{!--
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a> --}}
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Players
+                </a>
+                <div class="dropdown-menu selectTeam" aria-labelledby="navbarDropdown">
+                    {{!--
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a> --}}
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
+        <div id="teamTitle">
+            <!-- empty div for displaying team name-->
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-
-   <div id="teamTitle">
-     <!-- empty div for displaying team name-->
+        {{!--
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Player Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> --}}
+        <div id="nflPlayerDropdown">
+            <!-- empty div for displaying player dropdown-->
+        </div>
     </div>
-    {{!-->
-    <form class="form-inline my-2 my-lg-0">
-
-    <div id="teamTitle">
-      <!-- empty div for displaying team name-->
-    </div>
-    {{!-- <form class="form-inline my-2 my-lg-0">
-    
-      <input class="form-control mr-sm-2" type="search" placeholder="Player Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> --}}
-    <div id="nflPlayerDropdown">
-      <!-- empty div for displaying player dropdown-->
-    </div>
-  </div>
 </nav>
 
-{{!--
-<div id="header">
-  <a href="/" id="logo">NFLevate</a>
-  <ul id="menu">
-    <li>
-      <a href="/">
-        <span>Home</span>
-      </a>
-    </li>
-    <li>
-      <a href="/">
-        <span>Teams</span>
-      </a>
-    </li>
-    <li>
-      <a href="/">
-        <span>Players</span>
-      </a>
-    </li>
+<!-- END OF NAVBAR PANE !-->
 
-  </ul>
-  <br>
-  <br>
-  <br>
-</div> --}} {{!--
-<h3>Testing: {{this.name}}</h3>
-<div id="team">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 offset-md-4">
-        <div id="nflTeamDropdown2">
-          <!-- empty div for displaying team dropdown-->
-        </div>
-      </div>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h3>Player Page</h3>
-        <div id="test-area">
-          <!-- empty div -->
-        </div>
-
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-warning float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div> --}}
-<br>
 <div class="container">
-  <div class="row">
-    <div class="col-lg-4">
-      <div class="card bg-secondary" style="width: 18rem;">
-        <img class="card-img-top" src="http://via.placeholder.com/286x286" alt="Player Image">
-        <div class="card-body">
-          <h5 class="card-title text-center" id="pName">Player Name</h5>
-          <hr>
-          <div class="row">
-            <div class="col-lg-6">
-              <p class="card-text text-center" id="pPos">Position</p>
+    <div class="row">
+        <div class="col-lg-4">
+            {{!-- PLAYER CARD START! --}}
+            <div class="card bg-secondary" style="width: 18rem;">
+                <img class="card-img-top" src="http://via.placeholder.com/286x286" alt="Player Image">
+                <div class="card-body">
+                    <h5 class="card-title text-center" id="pName">Player Name</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="card-text text-center" id="pPos">Position</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="card-text text-center" id="pNumb">Number</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="card-text text-center">Height:
+                                <span id="pHeight">#</span>
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p class="card-text text-center">Weight:
+                                <span id="pWeight">#</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="card-text text-center">Hometown:
+                                <span id="pHometown">#</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="card-text text-center">School:
+                                <span id="pSchool">#</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="card-text text-center">Draft Date:
+                                <span id="pDraftDate">#</span>
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p class="card-text text-center">Draft Round:
+                                <span id="pDraftRound">#</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="card-text text-center">Rookie Year:
+                                <span id="pRookYear">#</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-6">
-              <p class="card-text text-center" id="pNumb">Number</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <p class="card-text text-center">Height:
-                <span id="pHeight">#</span>
-              </p>
-            </div>
-            <div class="col-lg-6">
-              <p class="card-text text-center">Weight:
-                <span id="pWeight">#</span>
-              </p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <p class="card-text text-center" id="pCollege"></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <p class="card-text text-center">Draft Date:
-                <span id="pDraftDate"></span>
-              </p>
-            </div>
-            <div class="col-lg-12">
-              <p class="card-text text-center">Draft Round:
-                <span id="pDraftRound"></span>
-              </p>
-            </div>
-          </div>
+            {{!-- END PLAYER CARD --}}
         </div>
-      </div>
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-12" style="background-color:lightslategray;">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, doloribus voluptatibus cum doloremque officiis
+                        similique, neque magnam officia aut fugit voluptatum dicta perspiciatis, quis perferendis ut vel
+                        eligendi eius nulla.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, doloribus voluptatibus cum doloremque officiis
+                        similique, neque magnam officia aut fugit voluptatum dicta perspiciatis, quis perferendis ut vel
+                        eligendi eius nulla.</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <nav>
+                        {{!-- Nav Header Items --}}
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-passing-tab" data-toggle="tab" href="#nav-passing" role="tab" aria-controls="nav-passing"
+                                aria-selected="true">Passing</a>
+                            <a class="nav-item nav-link" id="nav-rushing-tab" data-toggle="tab" href="#nav-rushing" role="tab" aria-controls="nav-rushing"
+                                aria-selected="false">Rushing</a>
+                            <a class="nav-item nav-link" id="nav-receiving-tab" data-toggle="tab" href="#nav-receiving" role="tab" aria-controls="nav-receiving"
+                                aria-selected="false">Receiving</a>
+                            <a class="nav-item nav-link" id="nav-defensive-tab" data-toggle="tab" href="#nav-defensive" role="tab" aria-controls="nav-defensive"
+                                aria-selected="false">Defensive Stats</a>
+                            <a class="nav-item nav-link" id="nav-punting-tab" data-toggle="tab" href="#nav-punting" role="tab" aria-controls="nav-defensive"
+                                aria-selected="false">Punting</a>
+                            <a class="nav-item nav-link" id="nav-fumbles-tab" data-toggle="tab" href="#nav-fumbles" role="tab" aria-controls="nav-fumbles"
+                                aria-selected="false">Fumbles</a>
+                        </div>
+                    </nav>
+                    {{!-- tab content for nav headers, ensure there are one of each --}}
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-passing" role="tabpanel" aria-labelledby="nav-passing-tab">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">YEAR</th>
+                                        <th scope="col">G</th>
+                                        <th scope="col">GS</th>
+                                        <th scope="col">ATT</th>
+                                        <th scope="col">COMP</th>
+                                        <th scope="col">PCT</th>
+                                        <th scope="col">YDS</th>
+                                        <th scope="col">YPA</th>
+                                        <th scope="col">LG</th>
+                                        <th scope="col">TD</th>
+                                        <th scope="col">INT</th>
+                                        <th scope="col">TKLD</th>
+                                        <th scope="col">20+</th>
+                                        <th scope="col">40+</th>
+                                        <th scope="col">RAT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Year</th>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="nav-rushing" role="tabpanel" aria-labelledby="nav-rushing-tab">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">YEAR</th>
+                                        <th scope="col">G</th>
+                                        <th scope="col">GS</th>
+                                        <th scope="col">ATT</th>
+                                        <th scope="col">YDS</th>
+                                        <th scope="col">AVG</th>
+                                        <th scope="col">LG</th>
+                                        <th scope="col">TD</th>
+                                        <th scope="col">20+</th>
+                                        <th scope="col">1ST</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Year</th>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="nav-receiving" role="tabpanel" aria-labelledby="nav-receiving-tab">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">YEAR</th>
+                                        <th scope="col">G</th>
+                                        <th scope="col">GS</th>
+                                        <th scope="col">REC</th>
+                                        <th scope="col">YDS</th>
+                                        <th scope="col">AVG</th>
+                                        <th scope="col">LG</th>
+                                        <th scope="col">TD</th>
+                                        <th scope="col">20+</th>
+                                        <th scope="col">40+</th>
+                                        <th scope="col">1ST</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Year</th>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="nav-defensive" role="tabpanel" aria-labelledby="nav-defensive-tab">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">YEAR</th>
+                                        <th scope="col">G</th>
+                                        <th scope="col">TOTAL</th>
+                                        <th scope="col">TKL</th>
+                                        <th scope="col">AST</th>
+                                        <th scope="col">SACKS</th>
+                                        <th scope="col">INT</th>
+                                        <th scope="col">YDS</th>
+                                        <th scope="col">AVG</th>
+                                        <th scope="col">LG</th>
+                                        <th scope="col">TD</th>
+                                        <th scope="col">PASS DEF</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Year</th>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="nav-punting" role="tabpanel" aria-labelledby="nav-punting-tab">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">YEAR</th>
+                                        <th scope="col">G</th>
+                                        <th scope="col">NO.</th>
+                                        <th scope="col">YDS</th>
+                                        <th scope="col">LG</th>
+                                        <th scope="col">AVG</th>
+                                        <th scope="col">BLK</th>
+                                        <th scope="col">120</th>
+                                        <th scope="col">TB</th>
+                                        <th scope="col">DOWNED</th>
+                                        <th scope="col">NO</th>
+                                        <th scope="col">RET YDS</th>
+                                        <th scope="col">TD</th>
+                                        <th scope="col">NET AVG</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Year</th>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="nav-fumbles" role="tabpanel" aria-labelledby="nav-fumbles-tab">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">YEAR</th>
+                                        <th scope="col">G</th>
+                                        <th scope="col">TOTAL</th>
+                                        <th scope="col">TKL</th>
+                                        <th scope="col">AST</th>
+                                        <th scope="col">SACKS</th>
+                                        <th scope="col">INT</th>
+                                        <th scope="col">YDS</th>
+                                        <th scope="col">AVG</th>
+                                        <th scope="col">LG</th>
+                                        <th scope="col">TD</th>
+                                        <th scope="col">PASS DEF</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Year</th>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                        <td>#</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-lg-8">
-      <div class="row">
-        <div class="col-lg-12" style="background-color:lightslategray;">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, doloribus voluptatibus cum doloremque officiis similique,
-            neque magnam officia aut fugit voluptatum dicta perspiciatis, quis perferendis ut vel eligendi eius nulla.</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, doloribus voluptatibus cum doloremque officiis similique,
-            neque magnam officia aut fugit voluptatum dicta perspiciatis, quis perferendis ut vel eligendi eius nulla.</p>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-12" style="background-color:lightslategray;">
-          <div class="text-center">
-            <h5 class="text-centered">Stats</h5>
-          </div>
-          <hr>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quibusdam eligendi nesciunt perspiciatis reiciendis
-            amet rerum. Nobis sequi quaerat iusto qui nostrum, officiis, doloribus illum minus placeat amet aspernatur sint.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quibusdam eligendi nesciunt perspiciatis reiciendis
-            amet rerum. Nobis sequi quaerat iusto qui nostrum, officiis, doloribus illum minus placeat amet aspernatur sint.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    {{!-- row 2 --}}
-  </div>
-  {{!-- end of container --}}
 </div>
-
+<div class="row">
+</div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/player.js"></script>
