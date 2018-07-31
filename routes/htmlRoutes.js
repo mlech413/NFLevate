@@ -20,7 +20,9 @@ module.exports = function(app) {
       });
     });
   });
-
+  app.get("/analytics", function(req, res) {
+  res.render("analytics")
+  });
 
 
 
