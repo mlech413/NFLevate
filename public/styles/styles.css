@@ -120,6 +120,6 @@ body {
 }
 
 
-#nflTeamDropdown {
+#nflTeamDropdown, #nflPlayerDropdown {
   font-size: 150%;
 }

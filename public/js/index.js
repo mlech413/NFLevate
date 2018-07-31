@@ -1,47 +1,16 @@
 nflTeams = [
-  // "Select a team",
-  // "Arizona Cardinals",
-  // "Atlanta Falcons",
-  // "Baltimore Ravens",
-  // "Buffalo Bills",
-  // "Carolina Panthers",
-  // "Chicago Bears",
-  // "Cincinnati Bengals",
-  // "Cleveland Browns",
-  // "Dallas Cowboys",
-  // "Denver Broncos",
-  // "Detroit Lions",
-  // "Green Bay Packers",
-  // "Houston Texans",
-  // "Indianapolis Colts",
-  // "Jacksonville Jaguars",
-  // "Kansas City Chiefs",
-  // "Los Angeles Chargers",
-  // "Los Angeles Rams",
-  // "Miami Dolphins",
-  // "Minnesota Vikings",
-  // "New England Patriots",
-  // "New Orleans Saints",
-  // "New York Giants",
-  // "New York Jets",
-  // "Oakland Raiders",
-  // "Philadelphia Eagles",
-  // "Pittsburgh Steelers",
-  // "San Francisco 49ers",
-  // "Seattle Seahawks",
-  // "Tampa Bay Buccaneers",
-  // "Tennessee Titans",
-  // "Washington Redskins"
 ];
 
 var selectedTeam = "";
 var selectedTeamWithPlus = "";
+var selectedTeamWithUnderscore = "";
+var selectDefaultDisabled = "Select a team!";
 
 $(document).on("change", ".selectTeam", function(event) {
   // retrieve the selected team from dropdown list
   selectedTeam = this.options[event.target.selectedIndex].value;
   // ignore 'select a team', only use selection if actual team is selected
-  if (selectedTeam !== "Or pick a specific team!") {
+  if (selectedTeam !== selectDefaultDisabled) {
     // Populate selectedTeamPlus: convert 'State Name' to 'State+Name'
     selectedTeamWithPlus = selectedTeam.split(" ").join("+");
     selectedTeamWithUnderscore = selectedTeam.split(" ").join("_");
@@ -95,21 +64,21 @@ var t = 0;
 var buildTeamList = function buildTeamList() {
   API.getTeams().then(function(data) {
     var $teams = data.map(function(team) {
-      // build array of team names from the Database
-      $(".my-list").append(team.team_name + "<br>");
+      // // build array of team names from the Database
+      // $(".my-list").append(team.team_name + "<br>");
       nflTeams[t] = team.team_name;
       t++;
       if (t > 31) {
         // *** USER PICKS A TEAM ***
         var teamListHtml = "<select class='selectTeam'>" +
-        "<option class='teamPicked' value='or pick a specific team!'>Or pick a specific team!</option>";
+        "<option class='teamPicked' value='" + selectDefaultDisabled + "'>" + selectDefaultDisabled + "</option>";
         // populate team dropdown from array
         for (var i = 0; i < nflTeams.length; i++) {
           teamListHtml = teamListHtml + "<option class='teamPicked' value='" + nflTeams[i] + "'>" + nflTeams[i] + "</option>";
         };
         teamListHtml = teamListHtml + "</select>";
         // send team dropdown list to the screen
-        $("#nflTeamDropdown").append(teamListHtml);
+        $("#nflTeamDropdown").html(teamListHtml);
       }
     });
   });
