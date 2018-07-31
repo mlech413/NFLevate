@@ -24,10 +24,18 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
+
+   <div id="teamTitle">
+     <!-- empty div for displaying team name-->
+    </div>
+    {{!-->
+    <form class="form-inline my-2 my-lg-0">
+
     <div id="teamTitle">
       <!-- empty div for displaying team name-->
     </div>
     {{!-- <form class="form-inline my-2 my-lg-0">
+    
       <input class="form-control mr-sm-2" type="search" placeholder="Player Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> --}}
@@ -109,48 +117,80 @@
 <br>
 <div class="container">
   <div class="row">
-    <div class="col-5">
+    <div class="col-lg-4">
       <div class="card bg-secondary" style="width: 18rem;">
         <img class="card-img-top" src="http://via.placeholder.com/286x286" alt="Player Image">
         <div class="card-body">
           <h5 class="card-title text-center" id="pName">Player Name</h5>
           <hr>
           <div class="row">
-            <div class="col-6">
+            <div class="col-lg-6">
               <p class="card-text text-center" id="pPos">Position</p>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6">
               <p class="card-text text-center" id="pNumb">Number</p>
             </div>
           </div>
           <div class="row">
-            <div class="col-6">
+            <div class="col-lg-6">
               <p class="card-text text-center">Height:
                 <span id="pHeight">#</span>
               </p>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6">
               <p class="card-text text-center">Weight:
                 <span id="pWeight">#</span>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <p class="card-text text-center" id="pCollege"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <p class="card-text text-center">Draft Date:
+                <span id="pDraftDate"></span>
+              </p>
+            </div>
+            <div class="col-lg-12">
+              <p class="card-text text-center">Draft Round:
+                <span id="pDraftRound"></span>
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-7">
+    <div class="col-lg-8">
       <div class="row">
-        <div class="col-12" style="background-color:lightslategray;">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, doloribus voluptatibus cum doloremque officiis similique, neque magnam officia aut fugit voluptatum dicta perspiciatis, quis perferendis ut vel eligendi eius nulla.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, doloribus voluptatibus cum doloremque officiis similique, neque magnam officia aut fugit voluptatum dicta perspiciatis, quis perferendis ut vel eligendi eius nulla.</p>
+        <div class="col-lg-12" style="background-color:lightslategray;">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, doloribus voluptatibus cum doloremque officiis similique,
+            neque magnam officia aut fugit voluptatum dicta perspiciatis, quis perferendis ut vel eligendi eius nulla.</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, doloribus voluptatibus cum doloremque officiis similique,
+            neque magnam officia aut fugit voluptatum dicta perspiciatis, quis perferendis ut vel eligendi eius nulla.</p>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-12" style="background-color:lightslategray;">
+          <div class="text-center">
+            <h5 class="text-centered">Stats</h5>
+          </div>
+          <hr>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quibusdam eligendi nesciunt perspiciatis reiciendis
+            amet rerum. Nobis sequi quaerat iusto qui nostrum, officiis, doloribus illum minus placeat amet aspernatur sint.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur quibusdam eligendi nesciunt perspiciatis reiciendis
+            amet rerum. Nobis sequi quaerat iusto qui nostrum, officiis, doloribus illum minus placeat amet aspernatur sint.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  {{!-- row 2 --}}
-</div>
-{{!-- end of container --}}
+  <div class="row">
+    {{!-- row 2 --}}
+  </div>
+  {{!-- end of container --}}
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
