@@ -110,8 +110,8 @@ API.getPlayer().then(function (res, req) {
     console.log("team=" + displayTeam);
     console.log("division=" + response.division.name);
     console.log("venue=" + response.venue.name);
-    console.log("collage=" + playerInfo.college);
-    console.log("collage conference=" + playerInfo.college_conf);
+    console.log("college=" + playerInfo.college);
+    console.log("college conference=" + playerInfo.college_conf);
     console.log("rookie year=" + playerInfo.rookie_year);
     console.log("birth date=" + playerInfo.birth_date);
 
