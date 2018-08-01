@@ -9,9 +9,9 @@ module.exports = function(app) {
   });
 
   // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  app.get("/api/team/:name", function(req, res) {
+    db.Nflevate.findAll({}).then(function(oneTeam) {
+      res.json(oneTeam);
     });
   });
 

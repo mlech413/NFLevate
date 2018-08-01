@@ -119,7 +119,17 @@ body {
   width: 100%;
 }
 
-
 #nflTeamDropdown, #nflPlayerDropdown {
   font-size: 150%;
+}
+
+#wiki-card-section, #news-card-section {
+  margin-top: 40px;
+}
+
+#navbarDropdown2 { 
+  min-width: fit-content;
+  height: auto;
+  max-height: 500px;
+  overflow-x: hidden; 
 }
