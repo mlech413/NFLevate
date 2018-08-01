@@ -83,22 +83,22 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p class="card-text text-center">Hometown:
-                                <span id="pHometown">#</span>
+                            <p class="card-text text-center">High School:
+                                <span id="pHighSchool">#</span>
                             </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p class="card-text text-center">School:
-                                <span id="pSchool">#</span>
+                            <p class="card-text text-center">College:
+                                <span id="pCollege">#</span>
                             </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <p class="card-text text-center">Draft Date:
-                                <span id="pDraftDate">#</span>
+                            <p class="card-text text-center">Draft Year:
+                                <span id="pDraftYear">#</span>
                             </p>
                         </div>
                         <div class="col-6">
@@ -143,10 +143,6 @@
                                 aria-selected="false">Receiving</a>
                             <a class="nav-item nav-link" id="nav-defensive-tab" data-toggle="tab" href="#nav-defensive" role="tab" aria-controls="nav-defensive"
                                 aria-selected="false">Defensive Stats</a>
-                            <a class="nav-item nav-link" id="nav-punting-tab" data-toggle="tab" href="#nav-punting" role="tab" aria-controls="nav-defensive"
-                                aria-selected="false">Punting</a>
-                            <a class="nav-item nav-link" id="nav-fumbles-tab" data-toggle="tab" href="#nav-fumbles" role="tab" aria-controls="nav-fumbles"
-                                aria-selected="false">Fumbles</a>
                         </div>
                     </nav>
                     {{!-- tab content for nav headers, ensure there are one of each --}}
@@ -156,40 +152,21 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">YEAR</th>
+                                        <th scope="col">TEAM</th>
+                                        <th scope="col">TYPE</th>
                                         <th scope="col">G</th>
-                                        <th scope="col">GS</th>
                                         <th scope="col">ATT</th>
                                         <th scope="col">COMP</th>
                                         <th scope="col">PCT</th>
                                         <th scope="col">YDS</th>
-                                        <th scope="col">YPA</th>
-                                        <th scope="col">LG</th>
+                                        <th scope="col">YPC</th>
                                         <th scope="col">TD</th>
                                         <th scope="col">INT</th>
-                                        <th scope="col">TKLD</th>
-                                        <th scope="col">20+</th>
-                                        <th scope="col">40+</th>
-                                        <th scope="col">RAT</th>
+                                        <th scope="col">RATING</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Year</th>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                    </tr>
+                                <tbody id="passing">
+                                    {{!-- empty for display --}}
                                 </tbody>
                             </table>
                         </div>
@@ -198,30 +175,18 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">YEAR</th>
+                                        <th scope="col">TEAM</th>
+                                        <th scope="col">TYPE</th>
                                         <th scope="col">G</th>
-                                        <th scope="col">GS</th>
                                         <th scope="col">ATT</th>
                                         <th scope="col">YDS</th>
                                         <th scope="col">AVG</th>
                                         <th scope="col">LG</th>
                                         <th scope="col">TD</th>
-                                        <th scope="col">20+</th>
-                                        <th scope="col">1ST</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Year</th>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                    </tr>
+                                <tbody id="rushing">
+                                    {{!-- empty for display --}}
                                 </tbody>
                             </table>
                         </div>
@@ -230,32 +195,18 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">YEAR</th>
+                                        <th scope="col">TEAM</th>
+                                        <th scope="col">TYPE</th>
                                         <th scope="col">G</th>
-                                        <th scope="col">GS</th>
                                         <th scope="col">REC</th>
                                         <th scope="col">YDS</th>
                                         <th scope="col">AVG</th>
                                         <th scope="col">LG</th>
-                                        <th scope="col">TD</th>
-                                        <th scope="col">20+</th>
-                                        <th scope="col">40+</th>
-                                        <th scope="col">1ST</th>
+                                        <th scope="col">TD</th>                                        
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Year</th>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                    </tr>
+                                <tbody id="receiving">
+                                    {{!-- empty for display --}}
                                 </tbody>
                             </table>
                         </div>
@@ -264,113 +215,23 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">YEAR</th>
+                                        <th scope="col">TEAM</th>
+                                        <th scope="col">TYPE</th>
                                         <th scope="col">G</th>
-                                        <th scope="col">TOTAL</th>
                                         <th scope="col">TKL</th>
                                         <th scope="col">AST</th>
                                         <th scope="col">SACKS</th>
                                         <th scope="col">INT</th>
-                                        <th scope="col">YDS</th>
-                                        <th scope="col">AVG</th>
-                                        <th scope="col">LG</th>
-                                        <th scope="col">TD</th>
                                         <th scope="col">PASS DEF</th>
+                                        <th scope="col">FORCED FUM</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Year</th>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                    </tr>
+                                <tbody id="defense">
+                                    {{!-- empty for display --}}
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade" id="nav-punting" role="tabpanel" aria-labelledby="nav-punting-tab">
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">YEAR</th>
-                                        <th scope="col">G</th>
-                                        <th scope="col">NO.</th>
-                                        <th scope="col">YDS</th>
-                                        <th scope="col">LG</th>
-                                        <th scope="col">AVG</th>
-                                        <th scope="col">BLK</th>
-                                        <th scope="col">120</th>
-                                        <th scope="col">TB</th>
-                                        <th scope="col">DOWNED</th>
-                                        <th scope="col">NO</th>
-                                        <th scope="col">RET YDS</th>
-                                        <th scope="col">TD</th>
-                                        <th scope="col">NET AVG</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Year</th>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane fade" id="nav-fumbles" role="tabpanel" aria-labelledby="nav-fumbles-tab">
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">YEAR</th>
-                                        <th scope="col">G</th>
-                                        <th scope="col">TOTAL</th>
-                                        <th scope="col">TKL</th>
-                                        <th scope="col">AST</th>
-                                        <th scope="col">SACKS</th>
-                                        <th scope="col">INT</th>
-                                        <th scope="col">YDS</th>
-                                        <th scope="col">AVG</th>
-                                        <th scope="col">LG</th>
-                                        <th scope="col">TD</th>
-                                        <th scope="col">PASS DEF</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Year</th>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                        <td>#</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
                     </div>
                 </div>
             </div>

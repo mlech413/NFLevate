@@ -45,196 +45,192 @@ var API = {
       type: "GET"
     });
   }
-  // saveExample: function(example) {
-  //   return $.ajax({
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     type: "POST",
-  //     url: "api/examples",
-  //     data: JSON.stringify(example)
-  //   });
-  // },
-  // getExamples: function() {
-  //   return $.ajax({
-  //     url: "api/examples",
-  //     type: "GET"
-  //   });
-  // },
-  // deleteExample: function (id) {
-  //   return $.ajax({
-  //     url: "api/examples/" + id,
-  //     type: "DELETE"
-  //   });
-  // }
 };
 API.getPlayer().then(function (res, req) {
-  // console.log("res=" + res);
   var thisURL = window.location.href;
   var urlArray = thisURL.split("/");
   var teamAndPlayerIndex = (urlArray.length - 1);
-  // console.log("urlArray=" + urlArray);
   var teamAndPlayer = urlArray[teamAndPlayerIndex];
   var teamAndPlayerArray = teamAndPlayer.split("&");
   underscoreTeam = teamAndPlayerArray[0]
   underscorePlayer = teamAndPlayerArray[1]
+  playerId = teamAndPlayerArray[2]
   displayTeam = underscoreTeam.replace(/_/g, " ");
   displayPlayer = underscorePlayer.replace(/_/g, " ");
   $("#teamTitle").append("<h1><center><strong><i><font color='goldenrod'>" + displayTeam + "&nbsp;&nbsp;&nbsp;</font></i></strong></center></h1>");
   $("#pName").html(displayPlayer);
 
-  var playerInfo = {};
+  var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=azgb25e4z9m7rpw83g3fwvvc";
+  console.log("CLICK LINK TO VIEW FULL STATS OBJECT: " + statsQueryUrl);
+  $.ajax({
+    url: statsQueryUrl,
+    dataType: "json",
+    method: "GET"
+  }).then(function(response) {
+    $("#pPos").html("Position: " + response.position);
+    $("#pNumb").html("#" + response.jersey);
+    var inches = (response.height).toFixed(0);
+    var feet = Math.floor(inches / 12);
+    inches %= 12;
+    $("#pHeight").html("&nbsp;" + feet + "' " + inches + "''");
+    $("#pWeight").html("&nbsp;" + response.weight);
+    $("#pHighSchool").html("&nbsp;" + response.high_school);
+    $("#pCollege").html("&nbsp;" + response.college);
+    $("#pDraftYear").html("&nbsp;" + response.draft.year);
+    $("#pDraftRound").html("&nbsp;" + response.draft.round);
+    $("#pRookYear").html("&nbsp;" + response.rookie_year);
+    console.log("team=" + displayTeam);
+    console.log("birth place=" + response.birth_place);
+    console.log("college conference=" + response.college_conf);
+    console.log("birth date=" + response.birth_date);
+    for (var s = 0; s < response.seasons.length; s++){
+      for (var y = 0; y < response.seasons[s].teams.length; y++) {
+        var gameType = "";
+        if (response.seasons[s].type === "REG") {
+          gameType = "Regular"
+        }
+        else if (response.seasons[s].type === "PST") {
+          gameType = "Playoffs"
+        }
+        else {
+          gameType = response.seasons[s].type 
+        }
+        var passingHtml = "<tr>" +
+          "<td>" + response.seasons[s].year + "</td>" +
+          "<td>" + response.seasons[s].teams[y].name + "</td>" +
+          "<td>" + gameType + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.games_played + "</td>";
+        var rushingHtml = passingHtml;
+        var receivingHtml = passingHtml;
+        var defenseHtml = passingHtml;
+
+        // PASSING
+        if (response.seasons[s].teams[y].statistics.passing){
+          passingHtml = passingHtml + "<td>" + response.seasons[s].teams[y].statistics.passing.attempts + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.passing.completions + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.passing.cmp_pct + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.passing.yards + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.passing.avg_yards + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.passing.touchdowns + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.passing.interceptions + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.passing.rating + "</td></tr>";
+        } else {
+          passingHtml = passingHtml + 
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td></tr>"
+        }
+        $("#passing").append(passingHtml);
+
+        // RUSHING
+        if (response.seasons[s].teams[y].statistics.rushing){
+          rushingHtml = rushingHtml + "<td>" + response.seasons[s].teams[y].statistics.rushing.attempts + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.rushing.yards + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.rushing.avg_yards + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.rushing.longest + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.rushing.touchdowns + "</td></tr>";
+        } else {
+          rushingHtml = rushingHtml + 
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td></tr>"
+        }
+        $("#rushing").append(rushingHtml);
+
+         // RECEIVING
+         if (response.seasons[s].teams[y].statistics.receiving){
+          receivingHtml = receivingHtml + "<td>" + response.seasons[s].teams[y].statistics.receiving.receptions + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.receiving.yards + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.receiving.avg_yards + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.receiving.longest + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.receiving.touchdowns + "</td></tr>";
+        } else {
+          receivingHtml = receivingHtml + 
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td></tr>"
+        }
+        $("#receiving").append(receivingHtml);
+
+        // DEFENSE
+        if (response.seasons[s].teams[y].statistics.defense){
+          defenseHtml = defenseHtml + "<td>" + response.seasons[s].teams[y].statistics.defense.tackles + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.defense.assists + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.defense.sacks + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.defense.interceptions + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.defense.passes_defended + "</td>" +
+          "<td>" + response.seasons[s].teams[y].statistics.defense.forced_fumbles + "</td></tr>";
+         } else {
+          defenseHtml = defenseHtml + 
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td>" +
+          "<td>0</td></tr>"
+         }
+        $("#defense").append(defenseHtml);
+        
+
+        
+
+
+      }
+    }
+});
+
   var teamID = teamIdList[underscoreTeam];
   // console.log("teamID=" + teamID);
   var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc";
-  console.log("CLICK LINK TO VIEW FULL JSON OBJECT: " + playerQueryUrl);
+  var playerList = [];
   $.ajax({
     url: playerQueryUrl,
     dataType: "json",
     method: "GET"
   }).then(function(response) {
+    // console.log(response);
+    var x = 0;
     for (var p = 0; p < response.players.length; p++) {
-      if (response.players[p].name == displayPlayer) {
-        playerInfo = response.players[p]
-        // console.log("playerInfo=" + JSON.stringify(playerInfo));
+      if (response.players[p].jersey != 0) {
+        if (response.players[p].name.indexOf("'") <= -1) {
+        playerList[x] = response.players[p].name +
+          ": #" + response.players[p].jersey + 
+          ", " + response.players[p].position;
+        // console.log("playerList[" + x + "]=" + playerList[x]);
+        x++;
+        }
+      }  
+    };
+    for ($i = 0; $i < playerList.length; $i++) {
+      for ($j = playerList.length-1; $j > $i; $j--) {
+        if (playerList[$j] < playerList[$j-1]) {
+          $t = playerList[$j];
+          playerList[$j] = playerList[$j-1];
+          playerList[$j-1] = $t;
+        }
       }
+    };
+    var playerListHtml = "<select class='selectPlayer'>" +
+    "<option class='playerPicked' value='" + selectDefaultDisabled + "'>" + selectDefaultDisabled + "</option>";
+    for (var p = 0; p < playerList.length; p++) {
+      playerListHtml = playerListHtml + "<option class='playerPicked' value='" + playerList[p] + "'>" + playerList[p] + "</option>";
     }
-    $("#pPos").html("Position: " + playerInfo.position);
-    $("#pNumb").html("#" + playerInfo.jersey);
-    var inches = (playerInfo.height).toFixed(0);
-    var feet = Math.floor(inches / 12);
-    inches %= 12;
-    console.log(playerInfo.height + "in = " + feet + "ft " + inches + "in");
-    $("#pHeight").html("&nbsp;" + feet + "' " + inches + "''");
-    $("#pWeight").html("&nbsp;" + playerInfo.weight);
-    console.log("team=" + displayTeam);
-    console.log("division=" + response.division.name);
-    console.log("venue=" + response.venue.name);
-    console.log("college=" + playerInfo.college);
-    console.log("college conference=" + playerInfo.college_conf);
-    console.log("rookie year=" + playerInfo.rookie_year);
-    console.log("birth date=" + playerInfo.birth_date);
-
-    var teamID = teamIdList[underscoreTeam];
-    // console.log("teamID=" + teamID);
-    var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc";
-    var playerList = [];
-    $.ajax({
-      url: playerQueryUrl,
-      dataType: "json",
-      method: "GET"
-    }).then(function(response) {
-      // console.log(response);
-      var x = 0;
-      for (var p = 0; p < response.players.length; p++) {
-        if (response.players[p].jersey != 0) {
-          if (response.players[p].name.indexOf("'") <= -1) {
-          playerList[x] = response.players[p].name +
-            ": #" + response.players[p].jersey + 
-            ", " + response.players[p].position;
-          // console.log("playerList[" + x + "]=" + playerList[x]);
-          x++;
-          }
-        }  
-      };
-      for ($i = 0; $i < playerList.length; $i++) {
-        for ($j = playerList.length-1; $j > $i; $j--) {
-          if (playerList[$j] < playerList[$j-1]) {
-            $t = playerList[$j];
-            playerList[$j] = playerList[$j-1];
-            playerList[$j-1] = $t;
-          }
-        }
-      };
-      var playerListHtml = "<select class='selectPlayer'>" +
-      "<option class='playerPicked' value='" + selectDefaultDisabled + "'>" + selectDefaultDisabled + "</option>";
-      for (var p = 0; p < playerList.length; p++) {
-        playerListHtml = playerListHtml + "<option class='playerPicked' value='" + playerList[p] + "'>" + playerList[p] + "</option>";
-      }
-      // console.log("playerList=" + playerList)
-      playerListHtml = playerListHtml + "</select>";
-      // console.log(playerListHtml);
-      $("#nflPlayerDropdown").html(playerListHtml);
-      $(document).on("change", ".selectPlayer", function(event) {
-        // retrieve the selected team from dropdown list
-        selectedPlayer = this.options[event.target.selectedIndex].value;
-        // ignore default select, only use selection if actual team is selected
-        if (selectedPlayer !== selectDefaultDisabled) {
-          // Populate selectedTeamPlus: convert 'State Name' to 'State+Name'
-          selectedPlayerWithUnderscore = selectedPlayer.split(" ").join("_");
-          selectedPlayerWithUnderscore = selectedPlayerWithUnderscore.split(':')[0];
-        }
-      });
+    // console.log("playerList=" + playerList)
+    playerListHtml = playerListHtml + "</select>";
+    // console.log(playerListHtml);
+    $("#nflPlayerDropdown").html(playerListHtml);
+    $(document).on("change", ".selectPlayer", function(event) {
+      // retrieve the selected team from dropdown list
+      selectedPlayer = this.options[event.target.selectedIndex].value;
     });
   });
 });
-
-
-// // refreshExamples gets new examples from the db and repopulates the list
-// var refreshExamples = function () {
- 
-//   API.getExamples().then(function (data) {
-//     var $examples = data.map(function (example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
-
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
-
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
-
-// // handleFormSubmit is called whenever we submit a new example
-// // Save the new example to the db and refresh the list
-// var handleFormSubmit = function (event) {
-//   event.preventDefault();
-
-//   var example = {
-//     text: $exampleText.val().trim(),
-//     description: $exampleDescription.val().trim()
-//   };
-
-//   if (!(example.text && example.description)) {
-//     alert("You must enter an example text and description!");
-//     return;
-//   }
-
-//   API.saveExample(example).then(function () {
-//     refreshExamples();
-//   });
-
-//   $exampleText.val("");
-//   $exampleDescription.val("");
-// };
-
-// // handleDeleteBtnClick is called when an example's delete button is clicked
-// // Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function () {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
-
-//   API.deleteExample(idToDelete).then(function () {
-//     refreshExamples();
-//   });
-// };
-
-// // Add event listeners to the submit and delete buttons
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
