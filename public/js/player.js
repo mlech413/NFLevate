@@ -64,12 +64,10 @@ API.getPlayer().then(function (res, req) {
   playerId = teamAndPlayerArray[2]
   displayTeam = underscoreTeam.split("_").join(" ");
   displayPlayer = underscorePlayer.split("_").join(" ");
-  // console.log('player=' + displayPlayer)
   $("#teamTitle").append("<h1><center><strong><i><font color='goldenrod'>" + displayTeam + "&nbsp;&nbsp;&nbsp;</font></i></strong></center></h1>");
   $("#pName").html(displayPlayer);
 
   var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=azgb25e4z9m7rpw83g3fwvvc";
-  // console.log("CLICK LINK TO VIEW FULL STATS OBJECT: " + statsQueryUrl);
   $.ajax({
     url: statsQueryUrl,
     dataType: "json",
@@ -99,10 +97,6 @@ API.getPlayer().then(function (res, req) {
     }
     
     $("#pRookYear").html("&nbsp;" + response.rookie_year);
-    // console.log("team=" + displayTeam);
-    // console.log("birth place=" + response.birth_place);
-    // console.log("college conference=" + response.college_conf);
-    // console.log("birth date=" + response.birth_date);
     for (var s = 0; s < response.seasons.length; s++){
       for (var y = 0; y < response.seasons[s].teams.length; y++) {
         var gameType = "";
@@ -204,7 +198,6 @@ API.getPlayer().then(function (res, req) {
         var t = 0;
         var buildTeamList = function buildTeamList() {
           API.getTeamList().then(function(data) {
-            // console.log(data);
             var $teams = data.map(function(team) {
               // // build array of team names from the Database
               // $(".my-list").append(team.team_name + "<br>");
@@ -242,7 +235,6 @@ API.getPlayer().then(function (res, req) {
 });
 
   var teamID = teamIdList[underscoreTeam];
-  // console.log("teamID=" + teamID);
   var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc";
   var playerList = [];
   var playerIdString = [];
@@ -280,9 +272,7 @@ API.getPlayer().then(function (res, req) {
     for (var p = 0; p < playerList.length; p++) {
       playerListHtml = playerListHtml + "<option class='playerPicked' value='" + playerIdString[p] + "'>" + playerList[p] + "</option>";
     }
-    // console.log("playerList=" + playerList)
     playerListHtml = playerListHtml + "</select>";
-    // console.log(playerListHtml);
     $("#nflPlayerDropdown").html(playerListHtml);
   });
      // ---Player news
@@ -290,7 +280,6 @@ API.getPlayer().then(function (res, req) {
   var playerPlus = displayPlayer.split(" ").join("+")
   var teamPlus =  displayTeam.split(" ").join("+")
   var playerQueryURL = 'https://newsapi.org/v2/everything?sources=espn&q=' + playerPlus + "+" + teamPlus + '&apiKey=3779a757d4bf4ef2ae792c89d896c0d9';
-    // console.log(playerQueryURL)
     //Send Ajax
     $.ajax({
         url: playerQueryURL,
@@ -298,20 +287,48 @@ API.getPlayer().then(function (res, req) {
         method: "GET"
     }).then(function(response) {  
         var playerResults = response;
-        // console.log(playerResults);
-    if (playerResults){
-      for (var i = 0; i < playerResults.articles.length; i++) {
-        $("#news").append("<a href=" + playerResults.articles[i].url + " target='blank'>" + playerResults.articles[i].title + "<br><br>");
-        if (i >=2) {
-          i = playerResults.articles.length;
+        var playerNewsCount = 0;
+        var teamNewsCount = 0;
+        if (playerResults){
+          playerNewsCount = playerResults.totalResults;
+          if (playerNewsCount < 3) {
+            teamNewsCount = 3 - playerNewsCount;
+          }
+          var breakVar = "";
+          for (var i = 0; i < playerResults.articles.length; i++) {
+            $("#news").append(breakVar + "<a href=" + playerResults.articles[i].url + " target='blank'>" + playerResults.articles[i].title + "</a>");
+            breakVar = "<br><br>";
+            if (i >=2) {
+              i = playerResults.articles.length;
+            }
+          }
+          if (teamNewsCount > 0) {
+            //player didn't have enough headlines, so get team articles and append
+            var newsQueryURL = 'https://newsapi.org/v2/everything?sources=espn&q=' + teamPlus + '&apiKey=3779a757d4bf4ef2ae792c89d896c0d9';
+            //Send Ajax
+            $.ajax({
+                url: newsQueryURL,
+                dataType: "json",
+                method: "GET"
+            }).then(function(response) { 
+              var teamResults = response;
+              if (teamResults){
+                for (var i = 0; i < teamResults.articles.length; i++) {
+                  $("#news").append(breakVar + "<a href=" + teamResults.articles[i].url + " target='blank'>" + teamResults.articles[i].title + "</a>");
+                  breakVar = "<br><br>";
+                  if (i >= teamNewsCount - 1) {
+                    i = teamResults.articles.length;
+                  }
+                }
+              };
+            });
+          }
         }
-      }
+    else {
+      $("#news").append("Sorry, no recent headlines for " + displayPlayer + ".");
     }
   });
 });
-
-
-
 
 $(document).on("change", ".selectTeam", function(event) {
   // retrieve the selected team from dropdown list

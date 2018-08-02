@@ -36,7 +36,6 @@ API.getTeams().then(function (res, req) {
   var teamID = $("#getApiTeamAccessId").attr("data-value");
   document.body.style.backgroundImage = "url('" + backgroundURL + "')";
   document.body.style.backgroundSize = "100%";
-  // console.log("teamID=" + teamID)
 
   if (teamLongId === "NFL") {
     teamID = "de760528-1dc0-416a-a978-b510d20692ff"
@@ -78,20 +77,11 @@ API.getTeams().then(function (res, req) {
           }
         }
       };
-      // console.log(playerList);
-      // console.log(playerIdString);
-    // });   
 
-      // NEW SECTION STOP
-
-  // };
-
-  
     var nflTeams = [];
     var t = 0;
     // var buildTeamList = function buildTeamList() {
       API.getTeamList().then(function(data) {
-        // console.log(data);
         var $teams = data.map(function(team) {
 
           // // build array of team names from the Database
@@ -152,9 +142,7 @@ API.getTeams().then(function (res, req) {
   });  
 
 
-  // ---Team Pic
-
-  // console.log(teamLogoQueryURL);
+  // ---Logo Pic
   if (teamLongId === "NFL") {
     var dispImg = "http://www.stickpng.com/assets/images/5895deb9cba9841eabab6099.png"
     var teamLogoHtml = "<div class='card' style='opacity: 0.85; height: 222px;' id='logo-card-section'><div class='card-body'>" +
@@ -186,7 +174,6 @@ API.getTeams().then(function (res, req) {
   else {
     // Set and log the query url 
     var selectedTeamWithPlus = teamLongId.split("_").join("+")
-    // console.log(selectedTeamWithPlus)
     var teamLogoQueryURL = "https://cors-anywhere.herokuapp.com/https://api.duckduckgo.com/?q=" + selectedTeamWithPlus + "&format=json&pretty=1";
     // Send Ajax
     $.ajax({
@@ -194,7 +181,6 @@ API.getTeams().then(function (res, req) {
         dataType: "json",
         method: "GET"
     }).then(function(response) { 
-      // console.log(response.Image)
       if (response.Image){
         var teamLogoHtml = "<div class='card' style='opacity: 0.85; height: 222px;' id='logo-card-section'>" +
                               "<div class='card-body'>" +
