@@ -124,13 +124,11 @@ API.getPlayer().then(function (res, req) {
           "<td>" + response.seasons[s].teams[y].statistics.passing.completions + "</td>" +
           "<td>" + response.seasons[s].teams[y].statistics.passing.cmp_pct + "</td>" +
           "<td>" + response.seasons[s].teams[y].statistics.passing.yards + "</td>" +
-          "<td>" + response.seasons[s].teams[y].statistics.passing.avg_yards + "</td>" +
           "<td>" + response.seasons[s].teams[y].statistics.passing.touchdowns + "</td>" +
           "<td>" + response.seasons[s].teams[y].statistics.passing.interceptions + "</td>" +
           "<td>" + response.seasons[s].teams[y].statistics.passing.rating + "</td></tr>";
         } else {
           passingHtml = passingHtml + 
-          "<td>0</td>" +
           "<td>0</td>" +
           "<td>0</td>" +
           "<td>0</td>" +

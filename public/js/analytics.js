@@ -5,8 +5,7 @@ var teamIdList = $("#getTeamIdList").attr("data-value");
 var projectionList = $("#getProjectionList").attr("data-value");
 document.body.style.backgroundImage = "url('http://www.wallpapersshock.com/uploads/large/nfl-logo/nfl-logo-grass-background-wallpaper.jpg')";
 document.body.style.backgroundSize = "100%";
-
-
+document.body.style.backgroundAttachment = "fixed";
 
 var teamIdArray = teamIdList.split("***,");
 var projectionArray = projectionList.split("***,");

@@ -36,6 +36,7 @@ API.getTeams().then(function (res, req) {
   var teamID = $("#getApiTeamAccessId").attr("data-value");
   document.body.style.backgroundImage = "url('" + backgroundURL + "')";
   document.body.style.backgroundSize = "100%";
+  document.body.style.backgroundAttachment = "fixed";
 
   if (teamLongId === "NFL") {
     teamID = "de760528-1dc0-416a-a978-b510d20692ff"
