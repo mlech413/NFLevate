@@ -10,6 +10,102 @@ module.exports = function(app) {
       });
     });
   });
+  app.get("/eagles", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/eagles.png'))
+  });
+  app.get("/patriots", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/patriots.png'))
+  });
+  app.get("/rams", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/rams.png'))
+  });
+  app.get("/vikings", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/vikings.png'))
+  });
+  app.get("/steelers", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/steelers.png'))
+  });
+  app.get("/falcons", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/falcons.png'))
+  });
+  app.get("/saints", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/saints.png'))
+  });
+  app.get("/jaguars", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/jaguars.png'))
+  });
+  app.get("/chiefs", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/chiefs.png'))
+  });
+  app.get("/packers", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/packers.png'))
+  });
+  app.get("/giants", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/giants.png'))
+  });
+  app.get("/chargers", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/chargers.png'))
+  });
+  app.get("/texans", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/texans.png'))
+  });
+  app.get("/titans", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/titans.png'))
+  });
+  app.get("/panthers", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/panthers.png'))
+  });
+  app.get("/niners", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/49ers.png'))
+  });
+  app.get("/lions", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/lions.png'))
+  });
+  app.get("/bears", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/bears.png'))
+  });
+  app.get("/seahawks", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/seahawks.png'))
+  });
+  app.get("/colts", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/colts.png'))
+  });
+  app.get("/broncos", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/broncos.png'))
+  });
+  app.get("/cardinals", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/cardinals.png'))
+  });
+  app.get("/jets", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/jets.png'))
+  });
+  app.get("/redskins", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/redskins.png'))
+  });
+  app.get("/ravens", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/ravens.png'))
+  });
+  app.get("/bengals", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/bengals.png'))
+  });
+  app.get("/buccaneers", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/buccaneers.png'))
+  });
+  app.get("/raiders", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/raiders.png'))
+  });
+  app.get("/dolphins", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/dolphins.png'))
+  });
+  app.get("/bills", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/bills.png'))
+  });
+  app.get("/browns", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/browns.png'))
+  });
+  app.get("/cowboys", function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/img/cowboys.png'))
+  });
 
     // Load team list on team page
     app.get("/teamlist", function(req, res) {
