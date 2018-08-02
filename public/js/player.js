@@ -53,6 +53,7 @@ var API = {
     });
   }
 };
+$("#logoImage").html("<img class='card-img-top' id='pImage' src='../img/football_loading.gif' alt='Player Image'>");
 API.getPlayer().then(function (res, req) {
   var thisURL = window.location.href;
   var urlArray = thisURL.split("/");
@@ -67,6 +68,44 @@ API.getPlayer().then(function (res, req) {
   $("#teamTitle").append("<h1><center><strong><i><font color='goldenrod'>" + displayTeam + "&nbsp;&nbsp;&nbsp;</font></i></strong></center></h1>");
   $("#pName").html(displayPlayer);
 
+  // ---Logo Pic
+  var logoHtml = "";
+  if (displayTeam === "NFL") {
+    logoHtml = "<img class='card-img-top' id='pImage' src='http://www.stickpng.com/assets/images/5895deb9cba9841eabab6099.png' ;alt='Logo'>";
+    $("#logoImage").html(logoHtml);
+  }
+  else if (displayTeam === "Buffalo Bills") {
+    logoHtml = "<img class='card-img-top' id='pImage' src='https://s3.amazonaws.com/freebiesupply/large/2x/buffalo-bills-logo-transparent.png' alt='Logo'>";
+    $("#logoImage").html(logoHtml);
+  }
+  else if (displayTeam === "New York Giants") {
+    logoHtml = "<img class='card-img-top' id='pImage' src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/New_York_Giants_logo.svg/2000px-New_York_Giants_logo.svg.png' alt='Logo'>";
+    $("#logoImage").html(logoHtml);
+  }
+  else if (displayTeam === "Tampa Bay Buccaneers") {
+    logoHtml = "<img class='card-img-top' id='pImage' src='https://s3.amazonaws.com/freebiesupply/large/2x/tampa-bay-buccaneers-logo-transparent.png' alt='Logo'>";
+    $("#logoImage").html(logoHtml);
+  }
+  else {
+    // Set and log the query url 
+    var selectedTeamWithPlus = displayTeam.split(" ").join("+")
+    var teamLogoQueryURL = "https://cors-anywhere.herokuapp.com/https://api.duckduckgo.com/?q=" + selectedTeamWithPlus + "&format=json&pretty=1";
+    // Send Ajax
+    $.ajax({
+        url: teamLogoQueryURL,
+        dataType: "json",
+        method: "GET"
+    }).then(function(response) { 
+      if (response.Image){
+        logoHtml = "<img class='card-img-top' id='pImage' src='" + response.Image + "' alt='Logo'>";
+      }
+      else {
+        logoHtml = "<img class='card-img-top' id='pImage' src='../img/football_loading.gif' alt='Logo'>";
+      }
+      $("#logoImage").html(logoHtml);
+    })
+  }
+  
   var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=azgb25e4z9m7rpw83g3fwvvc";
   $.ajax({
     url: statsQueryUrl,
@@ -325,6 +364,12 @@ API.getPlayer().then(function (res, req) {
     else {
       $("#news").append("Sorry, no recent headlines for " + displayPlayer + ".");
     }
+
+
+
+
+
+
   });
 });
 

@@ -45,8 +45,6 @@ API.getTeams().then(function (res, req) {
     // var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=wgxf9r4gm79q5rxrujh356tc"; // Mark API
     var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc"; // Vale API
 
-    // var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=" + process.env.SPORTRADAR_API_KEY;
-
     var playerList = [];
     var playerIdString = [];
     $.ajax({
@@ -168,10 +166,6 @@ API.getTeams().then(function (res, req) {
                         "<center><img src=" + dispImg + " style='max-width: 100%; max-height: 190px;'></center></div></div>";
     $("#teamLogo").html(teamLogoHtml);
   }
-  
-
-  
-
   else {
     // Set and log the query url 
     var selectedTeamWithPlus = teamLongId.split("_").join("+")
