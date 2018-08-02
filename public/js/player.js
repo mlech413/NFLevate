@@ -69,7 +69,7 @@ API.getPlayer().then(function (res, req) {
   $("#pName").html(displayPlayer);
 
   var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=azgb25e4z9m7rpw83g3fwvvc";
-  console.log("CLICK LINK TO VIEW FULL STATS OBJECT: " + statsQueryUrl);
+  // console.log("CLICK LINK TO VIEW FULL STATS OBJECT: " + statsQueryUrl);
   $.ajax({
     url: statsQueryUrl,
     dataType: "json",

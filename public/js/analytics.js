@@ -11,8 +11,8 @@ document.body.style.backgroundSize = "100%";
 var teamIdArray = teamIdList.split("***,");
 var projectionArray = projectionList.split("***,");
 
-console.log(projectionArray)
-console.log(teamIdArray)
+// console.log(projectionArray)
+// console.log(teamIdArray)
 
 for (i = 0; i < teamIdArray.length; i++) {
   $("#" + teamIdArray[i]).html(projectionArray[i]);
