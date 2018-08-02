@@ -36,8 +36,8 @@ var underscoreTeam = "";
 var underscorePlayer = "";
 var displayTeam = "";
 var displayPlayer = "";
-var selectDefaultTeamDisabled = "Select a Team";
-var selectDefaultPlayerDisabled = "Select a Player";
+var selectDefaultTeamDisabled = "Select another team...";
+var selectDefaultPlayerDisabled = "...or select a player";
 // The API object contains methods for each kind of request we'll make
 var API = {
   getTeamList: function() {
@@ -276,7 +276,7 @@ API.getPlayer().then(function (res, req) {
       }
     };
     var playerListHtml = "<select class='selectPlayer' style='background-color: black; color: goldenrod;'>" +
-    "<option class='playerPicked' value='" + selectDefaultPlayerDisabled + "'>" + selectDefaultPlayerDisabled + "</option>";
+    "<option class='playerPicked' value='" + selectDefaultPlayerDisabled + "'>&nbsp;" + selectDefaultPlayerDisabled + "</option>";
     for (var p = 0; p < playerList.length; p++) {
       playerListHtml = playerListHtml + "<option class='playerPicked' value='" + playerIdString[p] + "'>" + playerList[p] + "</option>";
     }

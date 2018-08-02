@@ -1,5 +1,5 @@
-var selectDefaultTeamDisabled = "Select a Team";
-var selectDefaultPlayerDisabled = "Select a Player";
+var selectDefaultTeamDisabled = "Select another team...";
+var selectDefaultPlayerDisabled = " ...or select a player";
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -116,7 +116,7 @@ API.getTeams().then(function (res, req) {
 
     if (teamLongId != "NFL") {
       var playerListHtml = "<select class='selectPlayer' style='background-color: black; color: goldenrod;'>" +
-      "<option class='playerPicked' value='" + selectDefaultPlayerDisabled + "'>" + selectDefaultPlayerDisabled + "</option>";
+      "<option class='playerPicked' value='" + selectDefaultPlayerDisabled + "'>&nbsp;&nbsp;" + selectDefaultPlayerDisabled + "</option>";
       for (var p = 0; p < playerList.length; p++) {
         // $("#navbarDropdown2").append("<a class='dropdown-item playerPicked2' value='" + playerList[p] + "' href='#'>" + playerList[p] + "</a>")
         // $("#navbarDropdown2").append("<option class='dropdown-item playerPicked2' value='" + playerList[p] + "'>" + playerList[p] + "</option>")
