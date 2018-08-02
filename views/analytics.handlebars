@@ -1,0 +1,609 @@
+<style>
+  td, table{
+        border: black solid 2px;
+        color: black;
+    }
+    .oddsHolder{
+      border: black solid 2px 2px 2px 0;
+    }
+    h4{
+      border-bottom: black solid 2px;
+     padding-bottom: 2px;
+    }
+</style>
+
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="/" style='font-size: 200%; color: goldenrod;'>NFLevate</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <div id="nflTeamDropdown">
+            <!-- empty div for displaying player dropdown-->
+        </div>
+        &nbsp;&nbsp;
+        <div id="nflPlayerDropdown">
+            <!-- empty div for displaying player dropdown-->
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+         <div id="teamTitle">
+            <!-- empty div for displaying team name-->
+        </div>
+        &nbsp;&nbsp;
+        
+    </div>
+</nav>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+        <br><br>
+      <h2>
+        Power Rankings
+      </h2>
+   
+      <table style="color:black; background-color: white; opacity: 0.85;">
+        
+        <tr><td><h4>
+          1. Philadelphia Eagles </h4><img src="/eagles" alt="" height="150px;" style="float:right; margin: -4px 4px -4px 0;">
+         <div id="Philadelphia_Eagles" style='margin-left: 10px'></div>
+        <br> <br></td></tr>  
+        <tr><td><h4>
+          2. New England Patriots</h4><img src="/patriots" alt="" height="95px;" style="float:right; margin: 3px 4px 1px 0;">
+<div id="New_England_Patriots" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          3. Minnesota Vikings </h4><img src="/vikings" alt="" height="95px;" style="float:right; margin: 3px 4px 1px 0;">
+<div id="Minnesota_Vikings" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          4. Los Angeles Rams </h4><img src="/rams" alt="" height="125px;" style="float:right; margin: 3px 4px 1px 0;">
+<div id="Los_Angeles_Rams" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          5. Pittsburgh Steelers </h4><img src="/steelers" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+        
+<div id="Pittsburgh_Steelers" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+          <tr><td><h4>
+          6. Atlanta Falcons </h4><img src="/falcons" alt="" height="85px;" style="float:right; margin: 3px -18px 1px -30px;">
+      
+<div id="Atlanta_Falcons" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          7. New Orleans Saints </h4><img src="/saints" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+        
+<div id="New_Orleans_Saints" style='margin-left: 10px'></div> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.       <br> <br></td></tr>  
+        <tr><td><h4>
+          8. Jacksonville Jaguars </h4><img src="/jaguars" alt="" height="80px;" style="float:right; margin: 3px -2px 1px 0;">
+        
+<div id="Jacksonville_Jaguars" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+         <tr><td><h4>
+          9. Kansas City Chiefs </h4><img src="/chiefs" alt="" height="95px;" style="float:right; margin: 3px 0px 1px -25px;">
+       
+<div id="Kansas_City_Chiefs" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+         <tr><td><h4>
+          10. Green Bay Packers </h4><img src="/packers" alt="" height="65px;" style="float:right; margin: 3px 4px 1px 15px;">
+<div id="Green_Bay_Packers" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+         <tr><td><h4>
+          11. New York Giants </h4><img src="/giants" alt="" height="70px;" style="float:right; margin: 3px 4px 1px 0;">
+       
+<div id="New_York_Giants" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+         <tr><td><h4>
+          12. Los Angeles Chargers </h4><img src="/chargers" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+       
+<div id="Los_Angeles_Chargers" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+         <tr><td><h4>
+          13. Houston Texans </h4><img src="/texans" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 4px;">
+       
+<div id="Houston_Texans" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          14. Tennessee Titans </h4><img src="/titans" alt="" height="85px;" style="float:right; margin: 3px 4px 1px -8px;">
+         
+<div id="Tennessee_Titans" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          15.Carotrna Panthers </h4><img src="/panthers" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+        
+<div id="Carolina_Panthers" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          16. San Francisco 49ers </h4><img src="/niners" alt="" height="75px;" style="float:right; margin: 3px 4px 1px 4px;">
+<div id="San_Francisco_49ers" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          17. Detroit Lions </h4><img src="/lions" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+        
+<div id="Detroit_Lions" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          18. Chicago Bears </h4><img src="/bears" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+      
+<div id="Chicago_Bears" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          19. Seattle Seahawks </h4><img src="/seahawks" alt="" height="55px;" style="float:right; margin: 3px 4px 1px 0;">
+<div id="Seattle_Seahawks" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          20. Dallas Cowboys </h4><img src="/cowboys" alt="" height="95px;" style="float:right; margin: 3px 4px 1px 0;">
+        
+<div id="Dallas_Cowboys" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          21. Indianapolis Colts </h4><img src="/colts" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+<div id="Indianapolis_Colts" style='margin-left: 10px'></div>       <br> <br></td></tr>  
+        <tr><td><h4>
+          22. Denver Broncos </h4><img src="/broncos" alt="" height="105px;" style="float:right; margin: 3px 4px 1px 0;">
+
+<div id="Denver_Broncos" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          23. Arizona Cardinals </h4><img src="/cardinals" alt="" height="75px;" style="float:right; margin: 3px 4px 1px 0;">
+        
+<div id="Arizona_Cardinals" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          24. New York Jets </h4><img src="/jets" alt="" height="75px;" style="float:right; margin: 3px 4px 1px 0;">
+        
+<div id="New_York_Jets" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          25. Washington Redskins </h4><img src="/redskins" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+<div id="Washington_Redskins" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          26. Baltimore Ravens </h4><img src="/ravens" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+<div id="Baltimore_Ravens" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          27. Cincinnati Bengals </h4><img src="/bengals" alt="" height="75px;" style="float:right; margin: 3px 4px 1px 0;">
+<div id="Cincinnati_Bengals" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          28. Tampa Bay Buccaneers </h4><img src="/buccaneers" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+        
+<div id="Tampa_Bay_Buccaneers" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          29. Oakland Raiders </h4><img src="/raiders" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+<div id="Oakland_Raiders" style='margin-left: 10px'></div>        <br> <br></td></tr>  
+        <tr><td><h4>
+          30. Miami Dolphins </h4><img src="/dolphins" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+          <div id="Miami_Dolphins" style='margin-left: 10px'></div><br> <br></td></tr>  
+        <tr><td><h4>
+            31. Buffalo Bills </h4><img src="/bills" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+            <div id="Buffalo_Bills" style='margin-left: 10px'></div> <br> <br></td></tr>  
+        <tr><td><h4>
+            32. Cleveland Browns</h4><img src="/browns" alt="" height="85px;" style="float:right; margin: 3px 4px 1px 0;">
+            <div id="Cleveland_Browns" style='margin-left: 10px'></div><br> <br></td></tr> 
+      </table>
+    </div>
+    <div class="col-4">
+        <br><br>
+      <h2>
+        NFL Awards Frontrunners-
+      </h2>
+      <br />
+      
+        MVP Race:
+      
+      <table style="width:100%;" style="border: black solid 0;">
+        <tr><td><h4>
+          <th>
+            Player
+          </th>
+          <th>
+            Odds
+          </th>
+        <br> <br></td></tr>
+        <tr><td>
+          <td>
+            Aaron Rodgers
+          <br> <br></td>
+          <td>
+            4:1
+          <br> <br></td>
+        <br> <br></td></tr>
+        <tr><td>
+          <td>
+            Matt Ryan
+          <br> <br></td>
+          <td><h4>
+            5:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Tom Brady
+          b<br> <br></td>
+          <td><h4>
+            7:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Carson Wentz
+          b<br> <br></td>
+          <td><h4>
+            15:2
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Ben Roethtrsberger
+          b<br> <br></td>
+          <td><h4>
+            12:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+      </table>
+      <br />
+      <br />
+      
+        Offensive Rookie of the Year:
+      
+      <table style="width:100%;" class="oddsHolder">
+        <tr><td><h4>
+          <th>
+            Player
+          </th>
+          <th>
+            Odds
+          </th>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Saquon Barkley
+          b<br> <br></td>
+          <td><h4>
+            5:2
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Baker Mayfield
+          b<br> <br></td>
+          <td><h4>
+            5:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Rashad Penny
+          b<br> <br></td>
+          <td><h4>
+            6:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Sony Mitchell
+          b<br> <br></td>
+          <td><h4>
+            7:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Lamar Jackson
+          b<br> <br></td>
+          <td><h4>
+            13:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+      </table>
+      <br />
+      <br />
+      
+        Defensive Player of the Year:
+      
+      <table style="width:100%;" class="oddsHolder">
+        <tr><td><h4>
+          <th>
+            Player
+          </th>
+          <th>
+            Odds
+          </th>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Aaron Donald
+          b<br> <br></td>
+          <td><h4>
+            3:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            J.J. Watt
+          b<br> <br></td>
+          <td><h4>
+            7:2
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Kahtrl Mack
+          b<br> <br></td>
+          <td><h4>
+            5:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Calais Campbell
+          b<br> <br></td>
+          <td><h4>
+            13:2
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Jalen Ramsey
+          b<br> <br></td>
+          <td><h4>
+            11:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+      </table>
+      <br />
+      <br />
+      
+        Defensive Rookie of the Year:
+      
+      <table style="width:100%;" class="oddsHolder">
+        <tr><td><h4>
+          <th>
+            Player
+          </th>
+          <th>
+            Odds
+          </th>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Roquan Smith
+          b<br> <br></td>
+          <td><h4>
+            6:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Bradley Chubb
+          b<br> <br></td>
+          <td><h4>
+            8:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Denzel Ward
+          b<br> <br></td>
+          <td><h4>
+            19:2
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Tremaine Edmunds
+          b<br> <br></td>
+          <td><h4>
+            11:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+        <tr><td><h4>
+          <td><h4>
+            Rashaan Evans
+          b<br> <br></td>
+          <td><h4>
+            16:1
+          b<br> <br></td>
+        <br> <br></td></tr>
+      </table>
+        <div id="fantasyRankings"> 
+        <h3>
+          Fantasy Rankings
+        </h3>
+        <select class="selectTeam">
+          <option class="positions" value="Select a position!">
+            Select a position
+          </option>
+          <option class="teamPicked" value="runningBack" id="allPos">
+            All
+          </option>
+          <option class="teamPicked" value="runningBack" id="qbPos">
+            Quarter Back
+          </option>
+          <option class="teamPicked" value="runningBack" id="rbPos">
+            Running Back
+          </option>
+          <option class="teamPicked" value="runningBack" id="wrPos">
+            Wide Reciever
+          </option>
+          <option class="teamPicked" value="runningBack" id="tePos">
+            Tight End
+          </option>
+          <option class="teamPicked" value="runningBack" id="kPos">
+            Kicker
+          </option>
+          <option class="teamPicked" value="runningBack" id="defPos">
+            Defense
+          </option>
+        </select>
+      <table>
+          <tr><td><h4>
+            Leveon Bell
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Todd Gurley
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Ezekiel Eltrot
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            David Johnson
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Antonio Brown
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Alvin Kamara
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Saquon Barkey
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Deandre Hopkins
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Kareem Hunt
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Melvin Gordon
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Leonard Fournett
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Odell Beckham
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Jutro Jones
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Michael Thomas
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Dalvin Cook
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Keenan Allen
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Lesean McCoy
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Devonta Freeman
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Christian McCaffrey
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            A.J. Green
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Rob Gronkowski
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Devante Adams
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Adam Thielen
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Mike Evans
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Travis Kelce
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Larry Fitzgerald
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Jerrock Mckinnon
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Tyreke Hill
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            T.Y. Hilton
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Jordan Howard
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Aaron Rodgers
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Doug Baldwin
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Zach Ertz
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Kenyan Drake
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Reshad Penny
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Tom Brady
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Juju Smith-Schuster
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Joe Mixon
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Alex Coltrns
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Stefon Diggs
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Demaryius Thomas
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Desaun Watson
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Derrick Henry
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Allen Robinson
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Josh Gordon
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Jay Ajayi
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Russel Wilson
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Greg Olsen
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Amari Cooper
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Golden Tate
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Jimmy Graham
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Lamar Miller
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Evan Engram
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Mark Ingram
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Jarvis Landry
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Cam Newton
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Carson Wentz
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Delanie Walker
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Derrius Guice
+          b<br> <br></td></tr>
+          <tr><td><h4>
+            Jacksonville Jaguars Defense
+          b<br> <br></td></tr>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div id="getTeamIdList" data-value="{{this.teamIdList}}"></div>
+  <div id="getProjectionList" data-value="{{this.projectionList}}"></div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/analytics.js"></script>

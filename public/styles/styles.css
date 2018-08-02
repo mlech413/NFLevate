@@ -4,11 +4,12 @@ body {
   padding-top: 65px;
   font-size: 95%;
 }
-
 .list-group-item {
   line-height: 2.5;
 }
-
+.card.bg-secondary {
+  margin-top:20px;
+}
 /* video loop for the background */
 #bgVideo {
   position: fixed;
@@ -17,9 +18,6 @@ body {
   min-width: 100%; 
   min-height: 100%;
 }
-
-
-
 /* header and menu formating BEGIN */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300);
 @import url(https://fonts.googleapis.com/css?family=Squada+One);
@@ -56,7 +54,7 @@ body {
   -webkit-transition: 200ms all;
 }
 #menu li a {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   /* font-family: 'Squada One', cursive; */
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: 800;
@@ -115,26 +113,21 @@ body {
     background-image: -webkit-linear-gradient(right, transparent 0%, rgba(0,0,0,.4) 100%);
 }
 /* header and menu formating END */
-
 .selectTeam {
   width: 100%;
 }
-
 #nflTeamDropdown, #nflPlayerDropdown {
   font-size: 150%;
 }
-
 #wiki-card-section, #news-card-section {
   margin-top: 40px;
 }
-
 #navbarDropdown2 { 
   min-width: fit-content;
   height: auto;
   max-height: 500px;
   overflow-x: hidden; 
 }
-
 a:link {
   color: darkblue;
 }

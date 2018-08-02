@@ -16,33 +16,35 @@
         
     </div>
 </nav>
-
 <!-- END OF NAVBAR PANE !-->
-
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
             {{!-- PLAYER CARD START! --}}
             <div class="card bg-secondary" style="width: 18rem; opacity: 0.85;">
-                <img class="card-img-top" src="http://via.placeholder.com/286x286" alt="Player Image">
+                <img class="card-img-top" id="pImage" src="http://via.placeholder.com/286x286" alt="Player Image">
                 <div class="card-body" style='background-color: lightgray; color: black;'>
                     <h5 class="card-title text-center" id="pName">Player Name</h5>
                     <hr>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <p class="card-text text-center" id="pPos">Position</p>
                         </div>
-                        <div class="col-6">
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
                             <p class="card-text text-center" id="pNumb">Number</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <p class="card-text text-center">Height:
                                 <span id="pHeight">#</span>
                             </p>
                         </div>
-                        <div class="col-6">
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
                             <p class="card-text text-center">Weight:
                                 <span id="pWeight">#</span>
                             </p>
@@ -63,12 +65,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <p class="card-text text-center">Draft Year:
                                 <span id="pDraftYear">#</span>
                             </p>
                         </div>
-                        <div class="col-6">
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
                             <p class="card-text text-center">Draft Round:
                                 <span id="pDraftRound">#</span>
                             </p>
@@ -84,10 +88,11 @@
                 </div>
             </div>
             {{!-- END PLAYER CARD --}}
-        </div>
+       </div>
         <div class="col-lg-8">
             <div class="row">
                 <div class="col-12" style="background-color:lightgray; color: black; opacity: 0.85;" id="news">
+                        {{!-- NEWS DIV --}}
                 </div>
             </div>
             <br>
@@ -109,7 +114,7 @@
                     {{!-- tab content for nav headers, ensure there are one of each --}}
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-passing" role="tabpanel" aria-labelledby="nav-passing-tab"  style="background-color:lightgray; color: black; opacity: 0.85;">
-                            <table class="table" style='opacity: 0.85;'>
+                            <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">YEAR</th>
@@ -192,7 +197,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -201,7 +205,5 @@
 </div>
 <div class="row">
 </div>
-
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/player.js"></script>

@@ -38,6 +38,24 @@ module.exports = function(app) {
       res.render("team")
   });
 
+    // Load team list on team page
+    app.get("/analytics", function(req, res) {
+      db.Nfl_teams.findAll({}).then(function(dbAllProjections) {
+        var teamIdArray = [];
+        var projectionsArray = [];
+        for (var i = 0; i < dbAllProjections.length; i++){
+          teamIdArray.push(dbAllProjections[i].team_long_id + "***");
+          projectionsArray.push(dbAllProjections[i].projection + "***");
+        }
+        console.log(projectionsArray);
+        console.log(teamIdArray);
+        res.render("analytics", { 
+          projectionList : projectionsArray,
+          teamIdList: teamIdArray
+        });
+      });
+    });
+
   app.get("/player/:name?", function(req, res) {
     return res.render("player", { name: req.params.name });
 
