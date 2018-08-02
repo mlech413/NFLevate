@@ -2,6 +2,7 @@ body {
   color: white;
   background-color: darkgray;
   padding-top: 65px;
+  font-size: 95%;
 }
 
 .list-group-item {
@@ -132,4 +133,8 @@ body {
   height: auto;
   max-height: 500px;
   overflow-x: hidden; 
+}
+
+a:link {
+  color: darkblue;
 }

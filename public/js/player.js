@@ -36,9 +36,16 @@ var underscoreTeam = "";
 var underscorePlayer = "";
 var displayTeam = "";
 var displayPlayer = "";
-var selectDefaultDisabled = "Select a Player!";
+var selectDefaultTeamDisabled = "Select a Team";
+var selectDefaultPlayerDisabled = "Select a Player";
 // The API object contains methods for each kind of request we'll make
 var API = {
+  getTeamList: function() {
+    return $.ajax({
+      url: "/teamlist",
+      type: "GET"
+    });
+  },
   getPlayer: function() {
     return $.ajax({
       url: "player/:name",
@@ -55,8 +62,9 @@ API.getPlayer().then(function (res, req) {
   underscoreTeam = teamAndPlayerArray[0]
   underscorePlayer = teamAndPlayerArray[1]
   playerId = teamAndPlayerArray[2]
-  displayTeam = underscoreTeam.replace(/_/g, " ");
-  displayPlayer = underscorePlayer.replace(/_/g, " ");
+  displayTeam = underscoreTeam.split("_").join(" ");
+  displayPlayer = underscorePlayer.split("_").join(" ");
+  // console.log('player=' + displayPlayer)
   $("#teamTitle").append("<h1><center><strong><i><font color='goldenrod'>" + displayTeam + "&nbsp;&nbsp;&nbsp;</font></i></strong></center></h1>");
   $("#pName").html(displayPlayer);
 
@@ -74,15 +82,27 @@ API.getPlayer().then(function (res, req) {
     inches %= 12;
     $("#pHeight").html("&nbsp;" + feet + "' " + inches + "''");
     $("#pWeight").html("&nbsp;" + response.weight);
-    $("#pHighSchool").html("&nbsp;" + response.high_school);
+    if (response.high_school) {
+      $("#pHighSchool").html("&nbsp;" + response.high_school);
+    }
+    else {
+      $("#pHighSchool").html("&nbsp;n/a");
+    }
     $("#pCollege").html("&nbsp;" + response.college);
-    $("#pDraftYear").html("&nbsp;" + response.draft.year);
-    $("#pDraftRound").html("&nbsp;" + response.draft.round);
+    if (response.draft) {
+      $("#pDraftYear").html("&nbsp;" + response.draft.year);
+      $("#pDraftRound").html("&nbsp;" + response.draft.round);
+    }
+    else {
+      $("#pDraftYear").html("&nbsp;n/a");
+      $("#pDraftRound").html("&nbsp;n/a");
+    }
+    
     $("#pRookYear").html("&nbsp;" + response.rookie_year);
-    console.log("team=" + displayTeam);
-    console.log("birth place=" + response.birth_place);
-    console.log("college conference=" + response.college_conf);
-    console.log("birth date=" + response.birth_date);
+    // console.log("team=" + displayTeam);
+    // console.log("birth place=" + response.birth_place);
+    // console.log("college conference=" + response.college_conf);
+    // console.log("birth date=" + response.birth_date);
     for (var s = 0; s < response.seasons.length; s++){
       for (var y = 0; y < response.seasons[s].teams.length; y++) {
         var gameType = "";
@@ -180,7 +200,40 @@ API.getPlayer().then(function (res, req) {
          }
         $("#defense").append(defenseHtml);
         
-
+        var nflTeams = [];
+        var t = 0;
+        var buildTeamList = function buildTeamList() {
+          API.getTeamList().then(function(data) {
+            // console.log(data);
+            var $teams = data.map(function(team) {
+              // // build array of team names from the Database
+              // $(".my-list").append(team.team_name + "<br>");
+              nflTeams[t] = team.team_name;
+              t++;
+              // populate background
+              if (underscoreTeam == team.team_long_id) {
+                var backgroundURL = team.display_url;
+                document.body.style.backgroundImage = "url('" + backgroundURL + "')";
+                document.body.style.backgroundSize = "100%";
+              }
+              if (t > 32) {
+                // *** USER TEAM DROPDOWN ***
+                var teamListHtml = "<select class='selectTeam' style='background-color: black; color: goldenrod;'>" +
+                "<option class='teamPicked' value='" + selectDefaultTeamDisabled + "'>" + selectDefaultTeamDisabled + "</option>";
+                // populate team dropdown from array
+                for (var i = 0; i < nflTeams.length; i++) {
+                  if (nflTeams[i] != "NFL") {
+                    teamListHtml = teamListHtml + "<option class='teamPicked' value='" + nflTeams[i] + "'>" + nflTeams[i] + "</option>";
+                  }
+                };
+                teamListHtml = teamListHtml + "</select>";
+                // send team dropdown list to the screen
+                $("#nflTeamDropdown").html(teamListHtml);
+              }
+            });
+          });
+        };
+        buildTeamList();
         
 
 
@@ -192,12 +245,12 @@ API.getPlayer().then(function (res, req) {
   // console.log("teamID=" + teamID);
   var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc";
   var playerList = [];
+  var playerIdString = [];
   $.ajax({
     url: playerQueryUrl,
     dataType: "json",
     method: "GET"
   }).then(function(response) {
-    // console.log(response);
     var x = 0;
     for (var p = 0; p < response.players.length; p++) {
       if (response.players[p].jersey != 0) {
@@ -205,7 +258,7 @@ API.getPlayer().then(function (res, req) {
         playerList[x] = response.players[p].name +
           ": #" + response.players[p].jersey + 
           ", " + response.players[p].position;
-        // console.log("playerList[" + x + "]=" + playerList[x]);
+        playerIdString[x] = underscoreTeam + "&" + response.players[p].name.split(" ").join("_") + "&" + response.players[p].id;
         x++;
         }
       }  
@@ -214,23 +267,66 @@ API.getPlayer().then(function (res, req) {
       for ($j = playerList.length-1; $j > $i; $j--) {
         if (playerList[$j] < playerList[$j-1]) {
           $t = playerList[$j];
+          $u = playerIdString[$j];
           playerList[$j] = playerList[$j-1];
+          playerIdString[$j] = playerIdString[$j-1];
           playerList[$j-1] = $t;
+          playerIdString[$j-1] = $u;
         }
       }
     };
-    var playerListHtml = "<select class='selectPlayer'>" +
-    "<option class='playerPicked' value='" + selectDefaultDisabled + "'>" + selectDefaultDisabled + "</option>";
+    var playerListHtml = "<select class='selectPlayer' style='background-color: black; color: goldenrod;'>" +
+    "<option class='playerPicked' value='" + selectDefaultPlayerDisabled + "'>" + selectDefaultPlayerDisabled + "</option>";
     for (var p = 0; p < playerList.length; p++) {
-      playerListHtml = playerListHtml + "<option class='playerPicked' value='" + playerList[p] + "'>" + playerList[p] + "</option>";
+      playerListHtml = playerListHtml + "<option class='playerPicked' value='" + playerIdString[p] + "'>" + playerList[p] + "</option>";
     }
     // console.log("playerList=" + playerList)
     playerListHtml = playerListHtml + "</select>";
     // console.log(playerListHtml);
     $("#nflPlayerDropdown").html(playerListHtml);
-    $(document).on("change", ".selectPlayer", function(event) {
-      // retrieve the selected team from dropdown list
-      selectedPlayer = this.options[event.target.selectedIndex].value;
-    });
   });
+     // ---Player news
+  //Set and log the query url;
+  var playerPlus = displayPlayer.split(" ").join("+")
+  var teamPlus =  displayTeam.split(" ").join("+")
+  var playerQueryURL = 'https://newsapi.org/v2/everything?sources=espn&q=' + playerPlus + "+" + teamPlus + '&apiKey=3779a757d4bf4ef2ae792c89d896c0d9';
+    // console.log(playerQueryURL)
+    //Send Ajax
+    $.ajax({
+        url: playerQueryURL,
+        dataType: "json",
+        method: "GET"
+    }).then(function(response) {  
+        var playerResults = response;
+        // console.log(playerResults);
+    if (playerResults){
+      for (var i = 0; i < playerResults.articles.length; i++) {
+        $("#news").append("<a href=" + playerResults.articles[i].url + " target='blank'>" + playerResults.articles[i].title + "<br><br>");
+        if (i >=2) {
+          i = playerResults.articles.length;
+        }
+      }
+    }
+  });
+});
+
+
+
+
+$(document).on("change", ".selectTeam", function(event) {
+  // retrieve the selected team from dropdown list
+  selectedTeam = this.options[event.target.selectedIndex].value;
+  // ignore 'select a team', only use selection if actual team is selected
+  if (selectedTeam !== selectDefaultTeamDisabled) {
+    var selectedTeamUnderscore = selectedTeam.split(" ").join("_");
+    window.location.href = "/team/" + selectedTeamUnderscore;
+  }
+});
+$(document).on("change", ".selectPlayer", function(event) {
+  selectedPlayer = this.options[event.target.selectedIndex].value;
+  // ignore default select, only use if an actual team is selected
+  if (selectedPlayer !== selectDefaultPlayerDisabled) {
+    var selectedPlayerUnderscore = selectedPlayer.split(" ").join("_");
+    window.location.href = "/player/" + selectedPlayerUnderscore;
+  }
 });
