@@ -1,4 +1,4 @@
-var selectDefaultTeamDisabled = "Select another team...";
+var selectDefaultTeamDisabled = "Select a team...";
 var selectDefaultPlayerDisabled = " ...or select a player";
 
 // The API object contains methods for each kind of request we'll make
@@ -42,8 +42,11 @@ API.getTeams().then(function (res, req) {
     teamID = "de760528-1dc0-416a-a978-b510d20692ff"
   };
 
-    // var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=wgxf9r4gm79q5rxrujh356tc"; // MArk API
+    // var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=wgxf9r4gm79q5rxrujh356tc"; // Mark API
     var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc"; // Vale API
+
+    // var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=" + process.env.SPORTRADAR_API_KEY;
+
     var playerList = [];
     var playerIdString = [];
     $.ajax({
@@ -229,6 +232,7 @@ API.getTeams().then(function (res, req) {
   //Set and log the query url;
   var teamPlus = displayTeam.split(" ").join("+")
   var newsQueryURL = 'https://newsapi.org/v2/everything?sources=espn&q=' + teamPlus + '&apiKey=3779a757d4bf4ef2ae792c89d896c0d9';
+  // var newsQueryURL = 'https://newsapi.org/v2/everything?sources=espn&q=' + teamPlus + '&apiKey=' + process.env.NEWS_API_KEY;
     //Send Ajax
     $.ajax({
         url: newsQueryURL,
