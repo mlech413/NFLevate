@@ -143,8 +143,6 @@ module.exports = function(app) {
           teamIdArray.push(dbAllProjections[i].team_long_id + "***");
           projectionsArray.push(dbAllProjections[i].projection + "***");
         }
-        console.log(projectionsArray);
-        console.log(teamIdArray);
         res.render("analytics", { 
           projectionList : projectionsArray,
           teamIdList: teamIdArray

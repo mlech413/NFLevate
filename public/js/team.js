@@ -22,6 +22,7 @@ var API = {
     });
   }
 };
+// Default loading gif for slow loading API
 var loadingHtml = "<div class='card' style='opacity: 0.9; height: 222px;' id='logo-card-section'>" +
                     "<div class='card-body'>" +
       "<center><img src='../img/football_loading.gif' style=' max-width: 80%;'></center>" +
@@ -29,11 +30,14 @@ var loadingHtml = "<div class='card' style='opacity: 0.9; height: 222px;' id='lo
     "</div>"
     $("#teamLogo").html(loadingHtml);
 
+// Get selected team from Database
 API.getTeams().then(function (res, req) {
+  // Pull back from Handlebars so can use value in this page too
   var displayTeam = $("#getTeamName").attr("data-value");
   var teamLongId = $("#getTeamLongId").attr("data-value");
   var backgroundURL = $("#getDisplayUrl").attr("data-value");
   var teamID = $("#getApiTeamAccessId").attr("data-value");
+  // Customize background image to match team, using url value from the database
   document.body.style.backgroundImage = "url('" + backgroundURL + "')";
   document.body.style.backgroundSize = "100%";
   document.body.style.backgroundAttachment = "fixed";
@@ -42,9 +46,9 @@ API.getTeams().then(function (res, req) {
     teamID = "de760528-1dc0-416a-a978-b510d20692ff"
   };
 
+    //A API call for full roster list for selected team, to populate individual players dropdown
     var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=wgxf9r4gm79q5rxrujh356tc"; // Mark API
     // var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc"; // Vale API
-
     var playerList = [];
     var playerIdString = [];
     $.ajax({
@@ -64,6 +68,7 @@ API.getTeams().then(function (res, req) {
           }
         }  
       };
+      // Bubblesort the player list arrays from the API (they come back in random order)
       for ($i = 0; $i < playerList.length; $i++) {
         for ($j = playerList.length-1; $j > $i; $j--) {
           if (playerList[$j] < playerList[$j-1]) {
@@ -79,17 +84,15 @@ API.getTeams().then(function (res, req) {
 
     var nflTeams = [];
     var t = 0;
-    // var buildTeamList = function buildTeamList() {
       API.getTeamList().then(function(data) {
         var $teams = data.map(function(team) {
-
           // // build array of team names from the Database
-          // $(".my-list").append(team.team_name + "<br>");
           nflTeams[t] = team.team_name;
           t++;
           if (t > 32) {
-            // *** USER PICKS A TEAM ***
+            // *** Last team selected, so write team dropdown to the screen ***
             if (displayTeam) {
+              // populate the visible name in the dropdown with the value that was selected
               selectDefaultTeamDisabled = displayTeam;
             }
             var teamListHtml = "<select class='selectTeam' style='background-color: black; color: goldenrod;'>" +
@@ -106,15 +109,12 @@ API.getTeams().then(function (res, req) {
           }
         });
       });
-    // };
-    // buildTeamList();
 
     if (teamLongId != "NFL") {
+      // write out the player dropdown
       var playerListHtml = "<select class='selectPlayer' style='background-color: black; color: goldenrod;'>" +
       "<option class='playerPicked' value='" + selectDefaultPlayerDisabled + "'>&nbsp;&nbsp;" + selectDefaultPlayerDisabled + "</option>";
       for (var p = 0; p < playerList.length; p++) {
-        // $("#navbarDropdown2").append("<a class='dropdown-item playerPicked2' value='" + playerList[p] + "' href='#'>" + playerList[p] + "</a>")
-        // $("#navbarDropdown2").append("<option class='dropdown-item playerPicked2' value='" + playerList[p] + "'>" + playerList[p] + "</option>")
         playerListHtml = playerListHtml + "<option class='playerPicked' value='" + playerIdString[p] + "'>" + playerList[p] + "</option>";
       }
       playerListHtml = playerListHtml + "</select>";
@@ -122,6 +122,7 @@ API.getTeams().then(function (res, req) {
       // $("#navbarDropdown2").html(playerListHtml);
       $("#teamTitle").append("<h3><i><font color='goldenrod'>&nbsp;" + displayTeam + "&nbsp;</span></font></i></h3>");
 
+      // User selects a player
       $(document).on("change", ".selectPlayer", function(event) {
         selectedPlayer = this.options[event.target.selectedIndex].value;
         // ignore default select, only use if an actual team is selected
@@ -130,6 +131,7 @@ API.getTeams().then(function (res, req) {
         }
       });
     }
+    // User selects a team
     $(document).on("change", ".selectTeam", function(event) {
       // retrieve the selected team from dropdown list
       selectedTeam = this.options[event.target.selectedIndex].value;
@@ -144,7 +146,9 @@ API.getTeams().then(function (res, req) {
   });  
 
 
-  // ---Logo Pic
+  // ---Logo Picture
+   
+  // Exception logic for a few pictures that need alternate locations
   if (teamLongId === "NFL") {
     var dispImg = "http://www.stickpng.com/assets/images/5895deb9cba9841eabab6099.png"
     var teamLogoHtml = "<div class='card' style='opacity: 0.9; height: 222px;' id='logo-card-section'><div class='card-body'>" +
@@ -170,7 +174,7 @@ API.getTeams().then(function (res, req) {
     $("#teamLogo").html(teamLogoHtml);
   }
   else {
-    // Set and log the query url 
+    // Main picture API for getting and displaying team logos
     var selectedTeamWithPlus = teamLongId.split("_").join("+")
     var teamLogoQueryURL = "https://cors-anywhere.herokuapp.com/https://api.duckduckgo.com/?q=" + selectedTeamWithPlus + "&format=json&pretty=1";
     // Send Ajax
@@ -191,7 +195,7 @@ API.getTeams().then(function (res, req) {
     })
   }
 
-  // ---Team summary
+  // ---Team summary section
   var wikiId = teamLongId;
   if (teamLongId === "NFL") {
     wikiId = "National_Football_League";
@@ -216,7 +220,6 @@ API.getTeams().then(function (res, req) {
   //Set and log the query url;
   var teamPlus = displayTeam.split(" ").join("+")
   var newsQueryURL = 'https://newsapi.org/v2/everything?sources=espn&q=' + teamPlus + '&apiKey=3779a757d4bf4ef2ae792c89d896c0d9';
-  // var newsQueryURL = 'https://newsapi.org/v2/everything?sources=espn&q=' + teamPlus + '&apiKey=' + process.env.NEWS_API_KEY;
     //Send Ajax
     $.ajax({
         url: newsQueryURL,

@@ -31,6 +31,7 @@
    
       <table style="color:black; background-color: white; opacity: 0.9;">
         
+        {{!-- Team table, with text projections populated from the database --}}
         <tr><td><h4>
           1. Philadelphia Eagles </h4><img src="/eagles" alt="" height="150px;" style="float:right; margin: -4px 4px -4px 0;">
          <div id="Philadelphia_Eagles" style='margin-left: 10px'></div>
@@ -149,6 +150,8 @@
     </div>
     <div class="col-4">
         <br><br>
+  {{!-- Info sections on right side panel --}}
+
  <h2><font color="goldenrod">
         <center>NFL Awards Frontrunners</center>
       </font></h2>
@@ -371,10 +374,11 @@
           </td>
         </td></tr>
       </table>
-      <br>
-      <h5><font color="goldenrod">
-          <center>Fantasy Rankings</center>
-        </font></h5>
+      <br><br>
+
+      {{!-- Fantasy dropwon on bottom right, shows and hides list of selections, based on selected ID --}}
+      <h3><font color="goldenrod">
+          Fantasy Rankings</font></h3>
         <select class="selectPosition">
           <option class="positions" value="Select a position!">
             Select a position

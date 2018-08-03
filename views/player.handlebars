@@ -22,10 +22,12 @@
     <div class="row">
 
         <div class="col-lg-4">
-            {{!-- PLAYER CARD START! --}}
+            {{!-- PLAYER CARD START --}}
             <div class="card bg-secondary" style="width: 18rem; opacity: 0.9;">
-                <div id="logoImage"></div>
-                {{!-- <img class="card-img-top" id="pImage" src="http://via.placeholder.com/286x286" alt="Player Image"> --}}
+                <div id="logoImage">
+                    {{!-- Logo display --}}
+                </div>
+                {{!-- Player background info and measurments --}}
                 <div class="card-body" style='background-color: lightgray; color: black;'>
                     <h5 class="card-title text-center" id="pName">Player Name</h5>
                     <hr>
@@ -107,7 +109,7 @@
             <div class="row">
                 <div class="col-12">
                     <nav>
-                        {{!-- Nav Header Items --}}
+                        {{!-- Nav Header Items for Stats display --}}
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <a class="nav-item nav-link active" id="nav-passing-tab" data-toggle="tab" href="#nav-passing" role="tab" aria-controls="nav-passing"
                                 aria-selected="true"><strong>Passing</strong></a>

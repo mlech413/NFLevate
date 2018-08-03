@@ -24,6 +24,7 @@
 
   <div class='row'>
 
+    {{!-- News  --}}
     <div class='col-md-4'>
       <div class='card' style='opacity: 0.9;' id='news-card-section'>
         <div class='card-body' style='overflow-y: auto; max-height: 600px;'>
@@ -33,6 +34,7 @@
       </div>
     </div>
   
+    {{!-- Summary --}}
     <div class='col-md-4 col-offset-md-4'>
       <div class='card' style='opacity: 0.9;' id='wiki-card-section'>
         <div class='card-body' style='overflow-y: auto; max-height: 353px;'>
@@ -41,10 +43,12 @@
         </div>
       </div>
       <br>
+      {{!-- Logo picture --}}
       <div id="teamLogo">
       </div>
     </div>
 
+    {{!-- Twitter feed --}}
      <div class='col-md-4 col-offset-md-8'>
      <div class='card' style='opacity: 0.9;' id='wiki-card-section'>
         <div class='card-body' style='overflow-y: auto; max-height: 600px;'>
@@ -57,6 +61,7 @@
 
 </div>
 
+{{!-- handlebars data-values pulled to be able to use in js page --}}
 <div>
   <div id="getTeamName" data-value="{{this.teamName}}"></div>
   <div id="getTeamLongId" data-value="{{this.teamLongId}}"></div>

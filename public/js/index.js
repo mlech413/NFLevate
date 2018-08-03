@@ -6,6 +6,7 @@ var selectedTeamWithPlus = "";
 var selectedTeamWithUnderscore = "";
 var selectDefaultDisabled = "Select a team!";
 
+// When team dropdown is selected
 $(document).on("change", ".selectTeam", function(event) {
   // retrieve the selected team from dropdown list
   selectedTeam = this.options[event.target.selectedIndex].value;
@@ -21,12 +22,6 @@ $(document).on("change", ".selectTeam", function(event) {
   }
 });
 
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-var $teamList = $("#team-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -35,31 +30,10 @@ var API = {
       url: "api/teams",
       type: "GET"
     });
-  },
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
   }
 };
 
+// Build team dropdown list
 var t = 0;
 var buildTeamList = function buildTeamList() {
   API.getTeams().then(function(data) {

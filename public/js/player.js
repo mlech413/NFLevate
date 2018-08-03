@@ -53,7 +53,9 @@ var API = {
     });
   }
 };
+// Default loading image for slow loading API
 $("#logoImage").html("<img class='card-img-top' id='pImage' src='../img/football_loading.gif' alt='Player Image'>");
+// Pull team and player from URL
 API.getPlayer().then(function (res, req) {
   var thisURL = window.location.href;
   var urlArray = thisURL.split("/");
@@ -70,6 +72,7 @@ API.getPlayer().then(function (res, req) {
 
   // ---Logo Pic
   var logoHtml = "";
+  // Exception logic for a few pictures with special locations
   if (displayTeam === "NFL") {
     logoHtml = "<img class='card-img-top' id='pImage' src='http://www.stickpng.com/assets/images/5895deb9cba9841eabab6099.png' ;alt='Logo'>";
     $("#logoImage").html(logoHtml);
@@ -87,7 +90,7 @@ API.getPlayer().then(function (res, req) {
     $("#logoImage").html(logoHtml);
   }
   else {
-    // Set and log the query url 
+    // Main team logo API 
     var selectedTeamWithPlus = displayTeam.split(" ").join("+")
     var teamLogoQueryURL = "https://cors-anywhere.herokuapp.com/https://api.duckduckgo.com/?q=" + selectedTeamWithPlus + "&format=json&pretty=1";
     // Send Ajax
@@ -106,6 +109,7 @@ API.getPlayer().then(function (res, req) {
     })
   }
   
+  // API to get all the player personal history and info
   var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=wgxf9r4gm79q5rxrujh356tc"; //Mark API
   // var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=azgb25e4z9m7rpw83g3fwvvc"; //Vale API
   $.ajax({
@@ -113,6 +117,7 @@ API.getPlayer().then(function (res, req) {
     dataType: "json",
     method: "GET"
   }).then(function(response) {
+    // PULL AND WRITE OUT ALL THE STATS
     $("#pPos").html("Position: " + response.position);
     $("#pNumb").html("#" + response.jersey);
     var inches = (response.height).toFixed(0);
@@ -232,6 +237,7 @@ API.getPlayer().then(function (res, req) {
          }
         $("#defense").append(defenseHtml);
         
+        // Build team list for dropdown
         var nflTeams = [];
         var t = 0;
         var buildTeamList = function buildTeamList() {
@@ -250,6 +256,7 @@ API.getPlayer().then(function (res, req) {
               if (t > 32) {
                 // *** USER TEAM DROPDOWN ***
                 if (displayTeam) {
+                  // populate the visible name in the dropdown with the value that was selected
                   selectDefaultTeamDisabled = displayTeam;
                 };
                 var teamListHtml = "<select class='selectTeam' style='background-color: black; color: goldenrod;'>" +
@@ -275,6 +282,7 @@ API.getPlayer().then(function (res, req) {
     }
 });
 
+  // player dropdown list
   var teamID = teamIdList[underscoreTeam];
   var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=wgxf9r4gm79q5rxrujh356tc"; //Mark API
   // var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc"; //Vale API
@@ -309,6 +317,7 @@ API.getPlayer().then(function (res, req) {
         }
       }
     };
+    // populate the visible name in the dropdown with the value that was selected
     if (displayPlayer) {
       selectDefaultPlayerDisabled = displayPlayer;
     }
@@ -320,6 +329,7 @@ API.getPlayer().then(function (res, req) {
     playerListHtml = playerListHtml + "</select>";
     $("#nflPlayerDropdown").html(playerListHtml);
   });
+
      // ---Player news
   //Set and log the query url;
   var playerPlus = displayPlayer.split(" ").join("+")
@@ -348,7 +358,7 @@ API.getPlayer().then(function (res, req) {
             }
           }
           if (teamNewsCount > 0) {
-            //player didn't have enough headlines, so get team articles and append
+            //player didn't have enough headlines individually, so go get team articles instead
             var newsQueryURL = 'https://newsapi.org/v2/everything?sources=espn&q=' + teamPlus + '&apiKey=3779a757d4bf4ef2ae792c89d896c0d9';
             //Send Ajax
             $.ajax({
@@ -372,15 +382,10 @@ API.getPlayer().then(function (res, req) {
     else {
       $("#news").append("Sorry, no recent headlines for " + displayPlayer + ".");
     }
-
-
-
-
-
-
   });
 });
 
+// dropdown team selected
 $(document).on("change", ".selectTeam", function(event) {
   // retrieve the selected team from dropdown list
   selectedTeam = this.options[event.target.selectedIndex].value;
@@ -390,6 +395,7 @@ $(document).on("change", ".selectTeam", function(event) {
     window.location.href = "/team/" + selectedTeamUnderscore;
   }
 });
+//dropdown player selected
 $(document).on("change", ".selectPlayer", function(event) {
   selectedPlayer = this.options[event.target.selectedIndex].value;
   // ignore default select, only use if an actual team is selected
