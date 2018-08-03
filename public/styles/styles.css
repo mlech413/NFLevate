@@ -131,3 +131,8 @@ body {
 a:link {
   color: darkblue;
 }
+
+.nav-tabs{
+  background-color: lightgray;
+  opacity: 0.95;
+}

@@ -22,7 +22,7 @@ var API = {
     });
   }
 };
-var loadingHtml = "<div class='card' style='opacity: 0.85; height: 222px;' id='logo-card-section'>" +
+var loadingHtml = "<div class='card' style='opacity: 0.9; height: 222px;' id='logo-card-section'>" +
                     "<div class='card-body'>" +
       "<center><img src='../img/football_loading.gif' style=' max-width: 80%;'></center>" +
     "</div>" +
@@ -117,7 +117,7 @@ API.getTeams().then(function (res, req) {
       playerListHtml = playerListHtml + "</select>";
       $("#nflPlayerDropdown").html(playerListHtml);
       // $("#navbarDropdown2").html(playerListHtml);
-      $("#teamTitle").append("<h2><i><font color='goldenrod'>&nbsp;" + displayTeam + "&nbsp;</span></font></i></h2>");
+      $("#teamTitle").append("<h3><i><font color='goldenrod'>&nbsp;" + displayTeam + "&nbsp;</span></font></i></h3>");
 
       $(document).on("change", ".selectPlayer", function(event) {
         selectedPlayer = this.options[event.target.selectedIndex].value;
@@ -144,25 +144,25 @@ API.getTeams().then(function (res, req) {
   // ---Logo Pic
   if (teamLongId === "NFL") {
     var dispImg = "http://www.stickpng.com/assets/images/5895deb9cba9841eabab6099.png"
-    var teamLogoHtml = "<div class='card' style='opacity: 0.85; height: 222px;' id='logo-card-section'><div class='card-body'>" +
+    var teamLogoHtml = "<div class='card' style='opacity: 0.9; height: 222px;' id='logo-card-section'><div class='card-body'>" +
                         "<center><img src=" + dispImg + " style='max-width: 100%; max-height: 190px;'></center></div></div>";
     $("#teamLogo").html(teamLogoHtml);
   }
   else if (teamLongId === "Buffalo_Bills") {
     var dispImg = "https://s3.amazonaws.com/freebiesupply/large/2x/buffalo-bills-logo-transparent.png"
-    var teamLogoHtml = "<div class='card' style='opacity: 0.85; height: 222px;' id='logo-card-section'><div class='card-body'>" +
+    var teamLogoHtml = "<div class='card' style='opacity: 0.9; height: 222px;' id='logo-card-section'><div class='card-body'>" +
                         "<center><img src=" + dispImg + " style='max-width: 100%; max-height: 190px;'></center></div></div>";
     $("#teamLogo").html(teamLogoHtml);
   }
   else if (teamLongId === "New_York_Giants") {
     var dispImg = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/New_York_Giants_logo.svg/2000px-New_York_Giants_logo.svg.png"
-    var teamLogoHtml = "<div class='card' style='opacity: 0.85; height: 222px;' id='logo-card-section'><div class='card-body'>" +
+    var teamLogoHtml = "<div class='card' style='opacity: 0.9; height: 222px;' id='logo-card-section'><div class='card-body'>" +
                         "<center><img src=" + dispImg + " style='max-width: 100%; max-height: 190px;'></center></div></div>";
     $("#teamLogo").html(teamLogoHtml);
   }
   else if (teamLongId === "Tampa_Bay_Buccaneers") {
     var dispImg = "https://s3.amazonaws.com/freebiesupply/large/2x/tampa-bay-buccaneers-logo-transparent.png"
-    var teamLogoHtml = "<div class='card' style='opacity: 0.85; height: 222px;' id='logo-card-section'><div class='card-body'>" +
+    var teamLogoHtml = "<div class='card' style='opacity: 0.9; height: 222px;' id='logo-card-section'><div class='card-body'>" +
                         "<center><img src=" + dispImg + " style='max-width: 100%; max-height: 190px;'></center></div></div>";
     $("#teamLogo").html(teamLogoHtml);
   }
@@ -177,7 +177,7 @@ API.getTeams().then(function (res, req) {
         method: "GET"
     }).then(function(response) { 
       if (response.Image){
-        var teamLogoHtml = "<div class='card' style='opacity: 0.85; height: 222px;' id='logo-card-section'>" +
+        var teamLogoHtml = "<div class='card' style='opacity: 0.9; height: 222px;' id='logo-card-section'>" +
                               "<div class='card-body'>" +
                                 "<center><img src=" + response.Image + " style='max-width: 100%; max-height: 190px;'></center>" +
                               "</div>" +

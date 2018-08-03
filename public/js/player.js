@@ -65,7 +65,7 @@ API.getPlayer().then(function (res, req) {
   playerId = teamAndPlayerArray[2]
   displayTeam = underscoreTeam.split("_").join(" ");
   displayPlayer = underscorePlayer.split("_").join(" ");
-  $("#teamTitle").append("<h1><center><strong><i><font color='goldenrod'>" + displayTeam + "&nbsp;&nbsp;&nbsp;</font></i></strong></center></h1>");
+  $("#teamTitle").append("<h3><center><i><font color='goldenrod'>" + displayTeam + "&nbsp;&nbsp;&nbsp;</font></i></center></h3>");
   $("#pName").html(displayPlayer);
 
   // ---Logo Pic
