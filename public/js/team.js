@@ -47,7 +47,7 @@ API.getTeams().then(function (res, req) {
   };
 
     //A API call for full roster list for selected team, to populate individual players dropdown
-    var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=w9y549paju7kpr43q2fdbdj6";
+    var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=wgxf9r4gm79q5rxrujh356tc";
     var playerList = [];
     var playerIdString = [];
     $.ajax({

@@ -110,7 +110,7 @@ API.getPlayer().then(function (res, req) {
   }
   
   // API to get all the player personal history and info
-  var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=w9y549paju7kpr43q2fdbdj6";
+  var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=wgxf9r4gm79q5rxrujh356tc";
   $.ajax({
     url: statsQueryUrl,
     dataType: "json",
@@ -283,7 +283,7 @@ API.getPlayer().then(function (res, req) {
 
   // player dropdown list
   var teamID = teamIdList[underscoreTeam];
-  var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=w9y549paju7kpr43q2fdbdj6";
+  var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=wgxf9r4gm79q5rxrujh356tc";
   var playerList = [];
   var playerIdString = [];
   $.ajax({
