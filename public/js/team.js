@@ -1,5 +1,5 @@
-var selectDefaultTeamDisabled = "Select a team...";
-var selectDefaultPlayerDisabled = " ...or select a player";
+var selectDefaultTeamDisabled = " Select a team";
+var selectDefaultPlayerDisabled = "Select a player";
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -42,8 +42,8 @@ API.getTeams().then(function (res, req) {
     teamID = "de760528-1dc0-416a-a978-b510d20692ff"
   };
 
-    // var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=wgxf9r4gm79q5rxrujh356tc"; // Mark API
-    var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc"; // Vale API
+    var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=wgxf9r4gm79q5rxrujh356tc"; // Mark API
+    // var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc"; // Vale API
 
     var playerList = [];
     var playerIdString = [];
@@ -89,8 +89,11 @@ API.getTeams().then(function (res, req) {
           t++;
           if (t > 32) {
             // *** USER PICKS A TEAM ***
+            if (displayTeam) {
+              selectDefaultTeamDisabled = displayTeam;
+            }
             var teamListHtml = "<select class='selectTeam' style='background-color: black; color: goldenrod;'>" +
-            "<option class='teamPicked' value='" + selectDefaultTeamDisabled + "'>" + selectDefaultTeamDisabled + "</option>";
+            "<option class='teamPicked' value='" + selectDefaultTeamDisabled + "'>&nbsp;&nbsp;" + selectDefaultTeamDisabled + "</option>";
             // populate team dropdown from array
             for (var i = 0; i < nflTeams.length; i++) {
               if (nflTeams[i] !== "NFL") {

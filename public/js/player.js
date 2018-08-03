@@ -36,8 +36,8 @@ var underscoreTeam = "";
 var underscorePlayer = "";
 var displayTeam = "";
 var displayPlayer = "";
-var selectDefaultTeamDisabled = "Select another team...";
-var selectDefaultPlayerDisabled = "...or select a player";
+var selectDefaultTeamDisabled = "Select a team";
+var selectDefaultPlayerDisabled = "Select a player";
 // The API object contains methods for each kind of request we'll make
 var API = {
   getTeamList: function() {
@@ -106,7 +106,8 @@ API.getPlayer().then(function (res, req) {
     })
   }
   
-  var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=azgb25e4z9m7rpw83g3fwvvc";
+  var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=wgxf9r4gm79q5rxrujh356tc"; //Mark API
+  // var statsQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json?api_key=azgb25e4z9m7rpw83g3fwvvc"; //Vale API
   $.ajax({
     url: statsQueryUrl,
     dataType: "json",
@@ -248,8 +249,11 @@ API.getPlayer().then(function (res, req) {
               }
               if (t > 32) {
                 // *** USER TEAM DROPDOWN ***
+                if (displayTeam) {
+                  selectDefaultTeamDisabled = displayTeam;
+                };
                 var teamListHtml = "<select class='selectTeam' style='background-color: black; color: goldenrod;'>" +
-                "<option class='teamPicked' value='" + selectDefaultTeamDisabled + "'>" + selectDefaultTeamDisabled + "</option>";
+                "<option class='teamPicked' value='" + selectDefaultTeamDisabled + "'>&nbsp;&nbsp;" + selectDefaultTeamDisabled + "</option>";
                 // populate team dropdown from array
                 for (var i = 0; i < nflTeams.length; i++) {
                   if (nflTeams[i] != "NFL") {
@@ -272,7 +276,8 @@ API.getPlayer().then(function (res, req) {
 });
 
   var teamID = teamIdList[underscoreTeam];
-  var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc";
+  var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=wgxf9r4gm79q5rxrujh356tc"; //Mark API
+  // var playerQueryUrl = "https://cors-anywhere.herokuapp.com/http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamID + "/full_roster.json?api_key=azgb25e4z9m7rpw83g3fwvvc"; //Vale API
   var playerList = [];
   var playerIdString = [];
   $.ajax({
@@ -304,8 +309,11 @@ API.getPlayer().then(function (res, req) {
         }
       }
     };
+    if (displayPlayer) {
+      selectDefaultPlayerDisabled = displayPlayer;
+    }
     var playerListHtml = "<select class='selectPlayer' style='background-color: black; color: goldenrod;'>" +
-    "<option class='playerPicked' value='" + selectDefaultPlayerDisabled + "'>&nbsp;" + selectDefaultPlayerDisabled + "</option>";
+    "<option class='playerPicked' value='" + selectDefaultPlayerDisabled + "'>&nbsp;&nbsp;" + selectDefaultPlayerDisabled + "</option>";
     for (var p = 0; p < playerList.length; p++) {
       playerListHtml = playerListHtml + "<option class='playerPicked' value='" + playerIdString[p] + "'>" + playerList[p] + "</option>";
     }
