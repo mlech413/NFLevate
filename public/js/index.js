@@ -51,7 +51,7 @@ var buildTeamList = function buildTeamList() {
         };
         teamListHtml = teamListHtml + "</select>";
         // send team dropdown list to the screen
-        $("#nflTeamDropdown").html(teamListHtml);
+        $("#nflTeamDropdown1").html(teamListHtml);
       }
     });
   });

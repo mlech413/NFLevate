@@ -251,6 +251,7 @@ API.getPlayer().then(function (res, req) {
                 var backgroundURL = team.display_url;
                 document.body.style.backgroundImage = "url('" + backgroundURL + "')";
                 document.body.style.backgroundSize = "100%";
+                document.body.style.backgroundAttachment = "fixed";
               }
               if (t > 32) {
                 // *** USER TEAM DROPDOWN ***

@@ -54,8 +54,6 @@ body {
   -webkit-transition: 200ms all;
 }
 #menu li a {
-  /* text-transform: uppercase; */
-  /* font-family: 'Squada One', cursive; */
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: 800;
   display: block;
@@ -116,7 +114,7 @@ body {
 .selectTeam {
   width: 100%;
 }
-#nflTeamDropdown, #nflPlayerDropdown {
+#nflTeamDropdown1, #nflTeamDropdown, #nflPlayerDropdown {
   font-size: 150%;
 }
 #wiki-card-section, #news-card-section {
@@ -135,4 +133,81 @@ a:link {
 .nav-tabs{
   background-color: lightgray;
   opacity: 0.95;
+}
+  /* When screen size 1200px and below */
+  @media screen and (max-width: 1200px) {
+    .nav-tab, .nav-item, .tab-pane {
+     font-size: 70%;
+     width: 650px;
+    }
+  }
+  /* When screen size 1000px and below */
+  @media screen and (max-width: 1000px) {
+    body {
+      padding-top: 100px;
+    }
+    #logo {
+      font-size: 100px;
+    }
+    .nav-tab, .nav-item, .tab-pane {
+     font-size: 60%;
+     width: 600px;
+    }
+  }
+  /* When screen size 768px and below */
+  @media screen and (max-width: 768px) {
+    .container {
+      width: 95%;
+    }
+    body {
+      padding-top: 140px;
+    }
+    #logo {
+      font-size: 100px;
+    }
+  }
+
+  /* When screen size 640px and below */
+  @media screen and (max-width: 640px) {
+    body {
+      padding-top: 160px;
+    }
+    #logo {
+      font-size: 75px;
+    }
+    #nflTeamDropdown1 {
+      margin-top: -280px;
+    }
+    .nav-tab, .nav-item, .tab-pane {
+      font-size: 50%;
+      width: 500px;
+     }
+  }
+@media screen and (max-width: 360px) {
+  .container {
+    width: 100%;
+  }
+  body {
+    padding-top: 200px;
+  }
+  #logo {
+    font-size: 60px;
+  }
+  #nflTeamDropdown1 {
+    /* margin-top: 140px; */
+    margin-top: -300px;
+  }
+  .navbar-brand {
+    height: 50px;
+  }
+  #nflTeamDropdown {
+    margin-top: 10px;
+  }
+  #nflPlayerDropdown {
+    margin-top: 10px;
+  }
+  .nav-tab, .nav-item, .tab-pane {
+    font-size: 40%;
+    width: 340px;
+   }
 }
