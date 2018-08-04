@@ -11,7 +11,7 @@ This site can be accessed at https://guarded-scrubland-37816.herokuapp.com/. It 
 
 ## `Team Members`
 
-- Jim
-- Mark
-- Nick
-- Vale
+- Nick Ciambrone
+- Jim Coates
+- Mark Lech
+- Vale Rideout
